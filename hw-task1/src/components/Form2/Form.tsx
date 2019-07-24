@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
 interface FormProps {}
@@ -15,25 +13,6 @@ interface FormState {
 // phone: string;
 // phones: string;
 // PINcode: string;
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    container: {
-      display: "flex",
-      flexWrap: "wrap"
-    },
-    textField: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1)
-    },
-    dense: {
-      marginTop: theme.spacing(2)
-    },
-    menu: {
-      width: 200
-    }
-  })
-);
 
 export class MainForm extends Component<FormProps, FormState> {
   constructor(props: FormProps) {
