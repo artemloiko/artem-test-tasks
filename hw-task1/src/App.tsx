@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 
 import { MainForm } from "./components/Form2/Form";
+import { MyForm } from "./components/Form/Form";
 
 const App: React.FC = () => {
   return (
@@ -11,7 +12,8 @@ const App: React.FC = () => {
         <img src={logo} className="App-logo" alt="logo" />
         FORM VALIDATION
       </header>
-      <MainForm />
+      <hr />
+      <MyForm />
     </div>
   );
 };
