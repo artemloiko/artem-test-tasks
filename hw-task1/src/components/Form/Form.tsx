@@ -2,11 +2,16 @@ import React, { useState } from "react";
 import { useStyles } from "./useStyles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControl from "@material-ui/core/FormControl";
+
 import { Formik, FormikProps, FormikActions, FormikErrors } from "formik";
+import { BasicFormSchema } from "./BasicFormSchema";
 
 interface FormValues {
   name: string;
   email: string;
+  emailRFC: string;
 }
 
 export function MyForm() {
@@ -24,18 +29,8 @@ export function MyForm() {
     <div>
       <h1>Test form with hoooks</h1>
       <Formik
-        initialValues={{ email: "", name: "" }}
-        validate={(values: FormValues) => {
-          let errors: FormikErrors<FormValues> = {};
-          if (!values.email) {
-            errors.email = "Required";
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-            errors.email = "Invalid email address";
-          }
-          return errors;
-        }}
+        initialValues={{ email: "", name: "", emailRFC: "" }}
+        validationSchema={BasicFormSchema}
         onSubmit={(values: FormValues, actions: FormikActions<FormValues>) => {
           console.log("submit");
           setTimeout(() => {
@@ -51,7 +46,8 @@ export function MyForm() {
           handleChange,
           handleBlur,
           handleSubmit,
-          isSubmitting
+          isSubmitting,
+          isValid
         }: FormikProps<FormValues>) => (
           <form
             onSubmit={handleSubmit}
@@ -59,33 +55,87 @@ export function MyForm() {
             autoComplete="off"
             className={classes.container}
           >
-            <TextField
-              label="First name"
-              name="name"
-              value={values.name}
-              onChange={handleChange}
-              margin="normal"
+            <FormControl
+              className={classes.formControl}
               variant="outlined"
-              className={classes.textField}
-            />
-            {errors.name && touched.name && errors.name}
-            <TextField
-              label="Email"
-              name="email"
-              margin="normal"
+              error={!!errors.name && touched.name}
+            >
+              <TextField
+                label="First name"
+                name="name"
+                value={values.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                margin="normal"
+                variant="outlined"
+                className={classes.textField}
+                aria-describedby="component-name-error-text"
+                error={!!errors.name && touched.name}
+                inputProps={{
+                  maxLength: 128
+                }}
+              />
+              <FormHelperText id="component-name-error-text">
+                {errors.name && touched.name && errors.name}
+              </FormHelperText>
+            </FormControl>
+
+            <FormControl
+              className={classes.formControl}
               variant="outlined"
-              className={classes.textField}
-              value={values.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            {errors.email && touched.email && errors.email}
+              error={!!errors.name && touched.name}
+            >
+              <TextField
+                label="Email"
+                name="email"
+                margin="normal"
+                variant="outlined"
+                className={classes.textField}
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                aria-describedby="component-email-error-text"
+                error={!!errors.email && touched.email}
+                inputProps={{
+                  maxLength: 128
+                }}
+              />
+              <FormHelperText id="component-email-error-text">
+                {errors.email && touched.email && errors.email}
+              </FormHelperText>
+            </FormControl>
+
+            <FormControl
+              className={classes.formControl}
+              variant="outlined"
+              error={!!errors.name && touched.name}
+            >
+              <TextField
+                label="Email RFC"
+                name="emailRFC"
+                margin="normal"
+                variant="outlined"
+                className={classes.textField}
+                value={values.emailRFC}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                aria-describedby="component-emailRFC-error-text"
+                error={!!errors.emailRFC && touched.emailRFC}
+                inputProps={{
+                  maxLength: 128
+                }}
+              />
+              <FormHelperText id="component-emailRFC-error-text">
+                {errors.emailRFC && touched.emailRFC && errors.emailRFC}
+              </FormHelperText>
+            </FormControl>
+
             <Button
               variant="contained"
               color="primary"
-              className={classes.button}
+              className={`${classes.button} primaryButton`}
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || !isValid}
             >
               Primary
             </Button>

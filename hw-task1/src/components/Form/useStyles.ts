@@ -14,8 +14,14 @@ export const useStyles = makeStyles((theme: Theme) =>
       width: 300
     },
     button: {
-      margin: theme.spacing(3),
+      // margin: theme.spacing(3),
+      "&.primaryButton": {
+        margin: "30px 0"
+      },
       width: 300
+    },
+    formControl: {
+      margin: theme.spacing(1)
     }
   })
 );

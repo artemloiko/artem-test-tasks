@@ -8,6 +8,7 @@
     "@types/node": "12.6.8",
     "@types/react": "16.8.23",
     "@types/react-dom": "16.8.4",
+    "@types/yup": "^0.26.22",
     "clsx": "^1.0.4",
     "formik": "^1.5.8",
     "react": "^16.8.6",
