@@ -1,20 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { useStyles } from "./useStyles";
-import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import FormControl from "@material-ui/core/FormControl";
 
-import { Formik, FormikProps, FormikActions, FormikErrors } from "formik";
+import { Formik, FormikProps, FormikActions } from "formik";
 import { BasicFormSchema } from "./BasicFormSchema";
+import { FormValues } from "@i/formValues.interface";
 
-interface FormValues {
-  name: string;
-  email: string;
-  emailRFC: string;
-}
+import SimpleField from "../SimpleField/SimpleField";
 
-export function MyForm() {
+export default function MyForm() {
   const classes = useStyles();
   // const fields: string[] = [
   //   "firstName",
@@ -39,108 +33,70 @@ export function MyForm() {
           }, 400);
         }}
       >
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          isSubmitting,
-          isValid
-        }: FormikProps<FormValues>) => (
-          <form
-            onSubmit={handleSubmit}
-            noValidate
-            autoComplete="off"
-            className={classes.container}
-          >
-            <FormControl
-              className={classes.formControl}
-              variant="outlined"
-              error={!!errors.name && touched.name}
+        {(formikBag: FormikProps<FormValues>) => {
+          const {
+            values,
+            errors,
+            touched,
+            handleSubmit,
+            isSubmitting,
+            isValid
+          } = formikBag;
+          return (
+            <form
+              onSubmit={handleSubmit}
+              noValidate
+              autoComplete="off"
+              className={classes.container}
             >
-              <TextField
+              <SimpleField
+                {...formikBag}
                 label="First name"
-                name="name"
+                fieldName="name"
                 value={values.name}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                margin="normal"
-                variant="outlined"
-                className={classes.textField}
-                aria-describedby="component-name-error-text"
-                error={!!errors.name && touched.name}
+                isTouched={touched.name}
+                error={errors.name}
                 inputProps={{
                   maxLength: 128
                 }}
               />
-              <FormHelperText id="component-name-error-text">
-                {errors.name && touched.name && errors.name}
-              </FormHelperText>
-            </FormControl>
 
-            <FormControl
-              className={classes.formControl}
-              variant="outlined"
-              error={!!errors.name && touched.name}
-            >
-              <TextField
+              <SimpleField
+                {...formikBag}
                 label="Email"
-                name="email"
-                margin="normal"
-                variant="outlined"
-                className={classes.textField}
+                fieldName="email"
                 value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                aria-describedby="component-email-error-text"
-                error={!!errors.email && touched.email}
+                isTouched={touched.email}
+                error={errors.email}
                 inputProps={{
                   maxLength: 128
                 }}
               />
-              <FormHelperText id="component-email-error-text">
-                {errors.email && touched.email && errors.email}
-              </FormHelperText>
-            </FormControl>
 
-            <FormControl
-              className={classes.formControl}
-              variant="outlined"
-              error={!!errors.name && touched.name}
-            >
-              <TextField
+              <SimpleField
+                {...formikBag}
                 label="Email RFC"
-                name="emailRFC"
-                margin="normal"
-                variant="outlined"
-                className={classes.textField}
+                fieldName="emailRFC"
                 value={values.emailRFC}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                aria-describedby="component-emailRFC-error-text"
-                error={!!errors.emailRFC && touched.emailRFC}
+                isTouched={touched.emailRFC}
+                error={errors.emailRFC}
                 inputProps={{
-                  maxLength: 128
+                  maxLength: 320
                 }}
               />
-              <FormHelperText id="component-emailRFC-error-text">
-                {errors.emailRFC && touched.emailRFC && errors.emailRFC}
-              </FormHelperText>
-            </FormControl>
 
-            <Button
-              variant="contained"
-              color="primary"
-              className={`${classes.button} primaryButton`}
-              type="submit"
-              disabled={isSubmitting || !isValid}
-            >
-              Primary
-            </Button>
-          </form>
-        )}
+              <Button
+                variant="contained"
+                color="primary"
+                className={`${classes.button} primaryButton`}
+                type="submit"
+                disabled={isSubmitting || !isValid}
+              >
+                Primary
+              </Button>
+            </form>
+          );
+        }}
       </Formik>
     </div>
   );

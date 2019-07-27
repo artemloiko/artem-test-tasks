@@ -2,8 +2,7 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
-import { MainForm } from "./components/Form2/Form";
-import { MyForm } from "./components/Form/Form";
+import MyForm from "./components/Form/Form";
 
 const App: React.FC = () => {
   return (
