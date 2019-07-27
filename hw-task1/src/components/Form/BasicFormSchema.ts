@@ -3,12 +3,12 @@ import * as Yup from "yup";
 export const BasicFormSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, "Must be longer than 2 characters")
-    .max(128, "Nice try, nobody has a first name that long")
-    .required(
-      "Required, Local part of email can contains 64 characters max. The local part is part before @"
-    ),
+    .matches(/^[A-Za-z ]{2,}$/, "Only lattin letters support")
+    .required("Required")
+    .trim(),
   email: Yup.string()
-    .matches(/.{1,64}@.+\..{2,}/, "Invalid email address")
+    .trim()
+    .matches(/^[^\s]+@[^\s]+\.[^\s]{2,}$/, "Invalid email address")
     .required("Required"),
   emailRFC: Yup.string()
     .matches(
@@ -19,8 +19,8 @@ export const BasicFormSchema = Yup.object().shape({
     .required("Required")
     .test(
       "emailLocalPart",
-      "Local part of email can contains 64 characters max. The local part is part before @",
-      value => value === "jane@gmail.com"
+      "Email local part (before @) can contains maximum 64 characters.",
+      value => /@/.test(value) && value.split("@")[0].length <= 64
     )
   // password: Yup.string()
   //   .min(8, "Must be longer than 8 characters")

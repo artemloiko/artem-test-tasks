@@ -51,7 +51,7 @@ export default function MyForm() {
             >
               <SimpleField
                 {...formikBag}
-                label="First name"
+                label="Name"
                 fieldName="name"
                 value={values.name}
                 isTouched={touched.name}

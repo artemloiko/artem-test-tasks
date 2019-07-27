@@ -21,15 +21,26 @@ const SimpleField: React.SFC<
 > = props => {
   const classes = useStyles();
   const {
-    handleBlur,
-    handleChange,
     error,
     isTouched,
     value,
     inputProps,
     label,
-    fieldName
+    fieldName,
+    handleBlur,
+    handleChange,
+    setFieldValue
   } = props;
+
+  const handleCroppedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.target.value = e.target.value.trim();
+    handleChange(e);
+  };
+
+  const handleTrimmedBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFieldValue(fieldName, e.target.value.trim());
+    handleBlur(e);
+  };
 
   return (
     <FormControl
@@ -42,7 +53,7 @@ const SimpleField: React.SFC<
         name={fieldName}
         value={value}
         onChange={handleChange}
-        onBlur={handleBlur}
+        onBlur={handleTrimmedBlur || handleBlur}
         margin="normal"
         variant="outlined"
         className={classes.textField}
