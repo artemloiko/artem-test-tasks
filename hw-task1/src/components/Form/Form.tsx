@@ -81,7 +81,7 @@ export default function MyForm() {
                 isTouched={touched.emailRFC}
                 error={errors.emailRFC}
                 inputProps={{
-                  maxLength: 320
+                  maxLength: 254
                 }}
               />
 
