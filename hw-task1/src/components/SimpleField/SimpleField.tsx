@@ -3,7 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import { FormikProps } from "formik";
-import { FormValues } from "@i/formValues.interface";
+import { FormValues } from "../../interfaces/formValues.interface";
 import { useStyles } from "./useStyles";
 import { OutlinedInputProps } from "@material-ui/core/OutlinedInput";
 

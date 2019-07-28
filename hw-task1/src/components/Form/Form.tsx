@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 
 import { Formik, FormikProps, FormikActions } from "formik";
 import { BasicFormSchema } from "./BasicFormSchema";
-import { FormValues } from "@i/formValues.interface";
+import { FormValues } from "../../interfaces/formValues.interface";
 
 import SimpleField from "../SimpleField/SimpleField";
 
