@@ -14,6 +14,7 @@ interface SimpleFieldProps {
   isTouched?: boolean;
   error?: string;
   inputProps: OutlinedInputProps["inputProps"];
+  maskingFunction?: (value: string) => string;
 }
 
 const SimpleField: React.SFC<
@@ -30,11 +31,15 @@ const SimpleField: React.SFC<
     handleBlur,
     handleChange,
     setFieldValue,
-    setFieldTouched
+    setFieldTouched,
+    maskingFunction
   } = props;
 
   const handleCroppedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFieldTouched(fieldName, false);
+    if (maskingFunction) {
+      e.target.value = maskingFunction(e.target.value);
+    }
     handleChange(e);
   };
 

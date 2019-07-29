@@ -80,6 +80,7 @@ export default function MyForm() {
                 inputProps={{
                   maxLength: 128
                 }}
+                maskingFunction={value => value.replace(/\s/g, "")}
               />
 
               <SimpleField
@@ -138,6 +139,7 @@ export default function MyForm() {
                 inputProps={{
                   maxLength: 256
                 }}
+                maskingFunction={value => value.replace(/[^+\d ,;]/g, "")}
               />
 
               <MaskedField
