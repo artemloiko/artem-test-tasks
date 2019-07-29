@@ -23,7 +23,8 @@ export default function MyForm() {
           employeeId: "",
           employeeIdMasked: "",
           phone: "",
-          pinCode: ""
+          pinCode: "",
+          phoneNumbers: ""
         }}
         validationSchema={BasicFormSchema}
         onSubmit={(values: FormValues, actions: FormikActions<FormValues>) => {
@@ -125,6 +126,18 @@ export default function MyForm() {
                 error={errors.phone}
                 mask="+38 (999) 999 - 99 - 99"
                 maskChar="_"
+              />
+
+              <SimpleField
+                {...formikBag}
+                label="Phone numbers"
+                fieldName="phoneNumbers"
+                value={values.phoneNumbers}
+                isTouched={touched.phoneNumbers}
+                error={errors.phoneNumbers}
+                inputProps={{
+                  maxLength: 256
+                }}
               />
 
               <MaskedField

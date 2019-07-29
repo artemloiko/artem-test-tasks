@@ -6,4 +6,5 @@ export interface FormValues {
   employeeIdMasked: string;
   phone: string;
   pinCode: string;
+  phoneNumbers: string;
 }

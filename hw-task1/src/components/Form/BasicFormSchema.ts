@@ -50,7 +50,11 @@ export const BasicFormSchema = Yup.object().shape({
       "pinCodeMaskTest",
       "Required.",
       value => value && value.replace(/[^\d]/g, "").length === 8
-    )
+    ),
+  phoneNumbers: Yup.string()
+    .matches(/\d{8,}/, "Must be at least one number with 8 numbers")
+    .required("Required")
+    .trim()
   // password: Yup.string()
   //   .min(8, "Must be longer than 8 characters")
   //   .required("Required")
