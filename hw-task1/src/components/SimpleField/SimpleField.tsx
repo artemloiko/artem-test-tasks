@@ -29,11 +29,12 @@ const SimpleField: React.SFC<
     fieldName,
     handleBlur,
     handleChange,
-    setFieldValue
+    setFieldValue,
+    setFieldTouched
   } = props;
 
   const handleCroppedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.target.value = e.target.value.trim();
+    setFieldTouched(fieldName, false);
     handleChange(e);
   };
 
@@ -52,8 +53,8 @@ const SimpleField: React.SFC<
         label={label}
         name={fieldName}
         value={value}
-        onChange={handleChange}
-        onBlur={handleTrimmedBlur || handleBlur}
+        onChange={handleCroppedChange}
+        onBlur={handleTrimmedBlur}
         margin="normal"
         variant="outlined"
         className={classes.textField}

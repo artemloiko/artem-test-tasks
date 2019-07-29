@@ -34,9 +34,9 @@ const MaskedField: React.SFC<
     setFieldTouched
   } = props;
 
-  const handleFocus = (e: React.SyntheticEvent) => {
-    // console.log("focus handler", e);
-    // setFieldTouched(fieldName, false);
+  const handleCroppedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFieldTouched(fieldName, false);
+    handleChange(e);
   };
 
   return (
@@ -49,9 +49,8 @@ const MaskedField: React.SFC<
         mask={mask}
         maskChar={maskChar}
         value={value}
-        onChange={handleChange}
+        onChange={handleCroppedChange}
         onBlur={handleBlur}
-        onFocus={handleFocus}
       >
         {(inputProps: React.InputHTMLAttributes<HTMLInputElement>) => (
           <TextField
