@@ -11,7 +11,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     button: {
       // margin: theme.spacing(3),
       '&.primaryButton': {
-        margin: '30px 0'
+        margin: '10px 0'
       },
       width: 300
     },
