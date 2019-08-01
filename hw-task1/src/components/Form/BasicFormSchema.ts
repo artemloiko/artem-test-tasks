@@ -28,8 +28,8 @@ export const BasicFormSchema = Yup.object().shape({
     .required('Required')
     .trim(),
   employeeIdMasked: Yup.string()
-    .required('Required')
-    .test('employeeIdMaskTest', 'Required.', value => value && value.replace(/[^\w]/g, '').length === 15),
+    .min(2, 'Must be longer than 2 characters')
+    .required('Required'),
   phone: Yup.string()
     .required('Required')
     .test('pinCodeMaskTest', 'Required.', value => value && value.replace(/[^\d]/g, '').length === 12),

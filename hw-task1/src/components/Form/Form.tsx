@@ -93,15 +93,17 @@ export default function MyForm() {
                 }}
               />
 
-              <MaskedField
+              <SimpleField
                 {...formikBag}
                 label="Employee ID mask"
                 fieldName="employeeIdMasked"
                 value={values.employeeIdMasked}
                 isTouched={touched.employeeIdMasked}
                 error={errors.employeeIdMasked}
-                mask="id_***__*****_*"
-                maskChar="–"
+                inputProps={{
+                  maxLength: 128
+                }}
+                maskingFunction={value => value.replace(/[^\w_]/g, '')}
               />
 
               <MaskedField
