@@ -1,13 +1,13 @@
-import React from "react";
-import { useStyles } from "./useStyles";
-import Button from "@material-ui/core/Button";
+import React from 'react';
+import { useStyles } from './useStyles';
+import Button from '@material-ui/core/Button';
 
-import { Formik, FormikProps, FormikActions } from "formik";
-import { BasicFormSchema } from "./BasicFormSchema";
-import { FormValues } from "../../interfaces/formValues.interface";
+import { Formik, FormikProps, FormikActions } from 'formik';
+import { BasicFormSchema } from './BasicFormSchema';
+import { FormValues } from '../../interfaces/formValues.interface';
 
-import SimpleField from "../SimpleField/SimpleField";
-import MaskedField from "../MaskedField/MaskedField";
+import SimpleField from '../SimpleField/SimpleField';
+import MaskedField from '../MaskedField/MaskedField';
 
 export default function MyForm() {
   const classes = useStyles();
@@ -17,18 +17,18 @@ export default function MyForm() {
       <h1>Test form with hoooks</h1>
       <Formik
         initialValues={{
-          email: "",
-          name: "",
-          emailRFC: "",
-          employeeId: "",
-          employeeIdMasked: "",
-          phone: "",
-          pinCode: "",
-          phoneNumbers: ""
+          email: '',
+          name: '',
+          emailRFC: '',
+          employeeId: '',
+          employeeIdMasked: '',
+          phone: '',
+          pinCode: '',
+          phoneNumbers: ''
         }}
         validationSchema={BasicFormSchema}
         onSubmit={(values: FormValues, actions: FormikActions<FormValues>) => {
-          console.log("submit");
+          console.log('submit');
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
             actions.setSubmitting(false);
@@ -36,28 +36,14 @@ export default function MyForm() {
         }}
       >
         {(formikBag: FormikProps<FormValues>) => {
-          const {
-            values,
-            errors,
-            touched,
-            handleSubmit,
-            isSubmitting,
-            isValid,
-            validateForm
-          } = formikBag;
+          const { values, errors, touched, handleSubmit, isSubmitting, isValid, validateForm } = formikBag;
           const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-            console.log("sumit form", e.target);
-            console.log("validate", validateForm());
+            validateForm();
             handleSubmit(e);
           };
 
           return (
-            <form
-              onSubmit={handleSubmit}
-              noValidate
-              autoComplete="off"
-              className={classes.container}
-            >
+            <form onSubmit={handleFormSubmit} noValidate autoComplete="off" className={classes.container}>
               <SimpleField
                 {...formikBag}
                 label="Name"
@@ -80,7 +66,7 @@ export default function MyForm() {
                 inputProps={{
                   maxLength: 128
                 }}
-                maskingFunction={value => value.replace(/\s/g, "")}
+                maskingFunction={value => value.replace(/\s/g, '')}
               />
 
               <SimpleField
@@ -139,7 +125,7 @@ export default function MyForm() {
                 inputProps={{
                   maxLength: 256
                 }}
-                maskingFunction={value => value.replace(/[^+\d ,;]/g, "")}
+                maskingFunction={value => value.replace(/[^+\d ,;]/g, '')}
               />
 
               <MaskedField

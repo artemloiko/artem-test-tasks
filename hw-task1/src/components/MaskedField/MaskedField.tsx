@@ -1,11 +1,11 @@
-import React from "react";
-import TextField from "@material-ui/core/TextField";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import FormControl from "@material-ui/core/FormControl";
-import { FormikProps } from "formik";
-import { FormValues } from "../../interfaces/formValues.interface";
-import { useStyles } from "../SimpleField/useStyles";
-import InputMask from "react-input-mask";
+import React from 'react';
+import TextField from '@material-ui/core/TextField';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import { FormikProps } from 'formik';
+import { FormValues } from '../../interfaces/formValues.interface';
+import { useStyles } from '../SimpleField/useStyles';
+import InputMask from 'react-input-mask';
 
 interface MaskedFieldProps {
   label: string;
@@ -17,9 +17,7 @@ interface MaskedFieldProps {
   error?: string;
 }
 
-const MaskedField: React.SFC<
-  MaskedFieldProps & FormikProps<FormValues>
-> = props => {
+const MaskedField: React.SFC<MaskedFieldProps & FormikProps<FormValues>> = props => {
   const classes = useStyles();
   const {
     error,
@@ -30,7 +28,7 @@ const MaskedField: React.SFC<
     handleBlur,
     handleChange,
     mask,
-    maskChar = " ",
+    maskChar = ' ',
     setFieldTouched
   } = props;
 
@@ -40,18 +38,8 @@ const MaskedField: React.SFC<
   };
 
   return (
-    <FormControl
-      className={classes.formControl}
-      variant="outlined"
-      error={!!error && isTouched}
-    >
-      <InputMask
-        mask={mask}
-        maskChar={maskChar}
-        value={value}
-        onChange={handleCroppedChange}
-        onBlur={handleBlur}
-      >
+    <FormControl className={classes.formControl} variant="outlined" error={!!error && isTouched}>
+      <InputMask mask={mask} maskChar={maskChar} value={value} onChange={handleCroppedChange} onBlur={handleBlur}>
         {(inputProps: React.InputHTMLAttributes<HTMLInputElement>) => (
           <TextField
             label={label}
@@ -66,10 +54,7 @@ const MaskedField: React.SFC<
         )}
       </InputMask>
 
-      <FormHelperText
-        id={`component-${fieldName}-error-text`}
-        classes={{ root: classes.formHelper }}
-      >
+      <FormHelperText id={`component-${fieldName}-error-text`} classes={{ root: classes.formHelper }}>
         {error && isTouched && error}
       </FormHelperText>
     </FormControl>

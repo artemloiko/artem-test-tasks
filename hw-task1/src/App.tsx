@@ -1,8 +1,8 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
 
-import MyForm from "./components/Form/Form";
+import MyForm from './components/Form/Form';
 
 const App: React.FC = () => {
   return (

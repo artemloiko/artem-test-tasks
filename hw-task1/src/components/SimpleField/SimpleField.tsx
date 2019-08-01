@@ -1,11 +1,11 @@
-import React from "react";
-import TextField from "@material-ui/core/TextField";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import FormControl from "@material-ui/core/FormControl";
-import { FormikProps } from "formik";
-import { FormValues } from "../../interfaces/formValues.interface";
-import { useStyles } from "./useStyles";
-import { OutlinedInputProps } from "@material-ui/core/OutlinedInput";
+import React from 'react';
+import TextField from '@material-ui/core/TextField';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import { FormikProps } from 'formik';
+import { FormValues } from '../../interfaces/formValues.interface';
+import { useStyles } from './useStyles';
+import { OutlinedInputProps } from '@material-ui/core/OutlinedInput';
 
 interface SimpleFieldProps {
   label: string;
@@ -13,13 +13,11 @@ interface SimpleFieldProps {
   value: string;
   isTouched?: boolean;
   error?: string;
-  inputProps: OutlinedInputProps["inputProps"];
+  inputProps: OutlinedInputProps['inputProps'];
   maskingFunction?: (value: string) => string;
 }
 
-const SimpleField: React.SFC<
-  SimpleFieldProps & FormikProps<FormValues>
-> = props => {
+const SimpleField: React.SFC<SimpleFieldProps & FormikProps<FormValues>> = props => {
   const classes = useStyles();
   const {
     error,
@@ -49,11 +47,7 @@ const SimpleField: React.SFC<
   };
 
   return (
-    <FormControl
-      className={classes.formControl}
-      variant="outlined"
-      error={!!error && isTouched}
-    >
+    <FormControl className={classes.formControl} variant="outlined" error={!!error && isTouched}>
       <TextField
         label={label}
         name={fieldName}
@@ -67,10 +61,7 @@ const SimpleField: React.SFC<
         error={!!error && isTouched}
         inputProps={inputProps}
       />
-      <FormHelperText
-        id={`component-${fieldName}-error-text`}
-        classes={{ root: classes.formHelper }}
-      >
+      <FormHelperText id={`component-${fieldName}-error-text`} classes={{ root: classes.formHelper }}>
         {error && isTouched && error}
       </FormHelperText>
     </FormControl>
