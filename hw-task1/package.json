@@ -2,7 +2,7 @@
   "name": "hw-task1",
   "version": "0.2.0",
   "private": true,
-  "homepage": "/task1",
+  "homepage": ".",
   "dependencies": {
     "@material-ui/core": "^4.2.1",
     "@types/jest": "24.0.15",
