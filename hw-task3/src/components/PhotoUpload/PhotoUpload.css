@@ -1,0 +1,10 @@
+.PhotoUpload {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.PhotoUpload__text {
+  font-size: calc(16px + 2vmin);
+}
