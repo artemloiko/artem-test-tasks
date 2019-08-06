@@ -30,8 +30,9 @@ export default function MyForm() {
         onSubmit={(values: FormValues, actions: FormikActions<FormValues>) => {
           console.log('submit');
           setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
+            alert('Your form is sent');
             actions.setSubmitting(false);
+            actions.resetForm();
           }, 400);
         }}
       >
@@ -64,7 +65,7 @@ export default function MyForm() {
                 isTouched={touched.email}
                 error={errors.email}
                 inputProps={{
-                  maxLength: 128
+                  maxLength: 254
                 }}
                 maskingFunction={value => value.replace(/\s/g, '')}
               />
@@ -103,17 +104,17 @@ export default function MyForm() {
                 inputProps={{
                   maxLength: 128
                 }}
-                maskingFunction={value => value.replace(/[^\w_]/g, '')}
+                maskingFunction={value => value.replace(/[^a-z0-9_]/g, '')}
               />
 
               <MaskedField
                 {...formikBag}
-                label="Phone number"
+                label="Phone"
                 fieldName="phone"
                 value={values.phone}
                 isTouched={touched.phone}
                 error={errors.phone}
-                mask="+38 (999) 999 - 99 - 99"
+                mask="+38 (099) 999 - 99 - 99"
                 maskChar="_"
               />
 
@@ -127,7 +128,7 @@ export default function MyForm() {
                 inputProps={{
                   maxLength: 256
                 }}
-                maskingFunction={value => value.replace(/[^+\d ,;]/g, '')}
+                maskingFunction={value => value.replace(/[^+\d ,;)(]/g, '')}
               />
 
               <MaskedField
@@ -137,7 +138,7 @@ export default function MyForm() {
                 value={values.pinCode}
                 isTouched={touched.pinCode}
                 error={errors.pinCode}
-                mask="9999-9999"
+                mask="+9999-9999"
                 maskChar="_"
               />
 

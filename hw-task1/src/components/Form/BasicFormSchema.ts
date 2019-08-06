@@ -3,12 +3,12 @@ import * as Yup from 'yup';
 export const BasicFormSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, 'Must be longer than 2 characters')
-    .matches(/^[A-Za-z ]{2,}$/, 'Only lattin letters support')
+    .matches(/^[A-Za-z ]{2,}$/, 'Only latin letters support')
     .required('Required')
     .trim(),
   email: Yup.string()
     .trim()
-    .matches(/^[^\s]+@[^\s]+\.[^\s]{2,}$/, 'Invalid email address')
+    .matches(/^[-\w.а-яА-ЯёЁ]+@[-\w.а-яА-ЯёЁ]+\.[\w.а-яА-ЯёЁ]{2,}$/, 'Invalid email address')
     .required('Required'),
   emailRFC: Yup.string()
     .matches(
@@ -24,7 +24,7 @@ export const BasicFormSchema = Yup.object().shape({
     ),
   employeeId: Yup.string()
     .min(2, 'Must be longer than 2 characters')
-    .matches(/^[\w]{2,}$/, 'Only lattin letters, numbers and underscore are supported')
+    .matches(/^[a-z0-9_]{2,}$/, 'Only latin lower case letters, numbers and underscore are supported')
     .required('Required')
     .trim(),
   employeeIdMasked: Yup.string()
@@ -32,7 +32,7 @@ export const BasicFormSchema = Yup.object().shape({
     .required('Required'),
   phone: Yup.string()
     .required('Required')
-    .test('pinCodeMaskTest', 'Required.', value => value && value.replace(/[^\d]/g, '').length === 12),
+    .test('phoneMaskTest', 'Required.', value => value && value.replace(/[^\d]/g, '').length === 12),
   pinCode: Yup.string()
     .required('Required')
     .test('pinCodeMaskTest', 'Required.', value => value && value.replace(/[^\d]/g, '').length === 8),

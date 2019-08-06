@@ -42,7 +42,7 @@ const SimpleField: React.SFC<SimpleFieldProps & FormikProps<FormValues>> = props
   };
 
   const handleTrimmedBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFieldValue(fieldName, e.target.value.trim());
+    setFieldValue(fieldName, e.target.value.trim().replace(/\s+/g, ' '));
     handleBlur(e);
   };
 
