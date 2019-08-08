@@ -55,6 +55,7 @@ export default function MyForm() {
                 inputProps={{
                   maxLength: 128
                 }}
+                maskingFunctionOnBlur={value => value.trim().replace(/\s+/g, ' ')}
               />
 
               <SimpleField
@@ -138,7 +139,7 @@ export default function MyForm() {
                 value={values.pinCode}
                 isTouched={touched.pinCode}
                 error={errors.pinCode}
-                mask="+9999-9999"
+                mask="9999-9999"
                 maskChar="_"
               />
 

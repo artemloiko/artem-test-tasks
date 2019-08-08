@@ -15,6 +15,7 @@ interface SimpleFieldProps {
   error?: string;
   inputProps: OutlinedInputProps['inputProps'];
   maskingFunction?: (value: string) => string;
+  maskingFunctionOnBlur?: (value: string) => string;
 }
 
 const SimpleField: React.SFC<SimpleFieldProps & FormikProps<FormValues>> = props => {
@@ -30,7 +31,8 @@ const SimpleField: React.SFC<SimpleFieldProps & FormikProps<FormValues>> = props
     handleChange,
     setFieldValue,
     setFieldTouched,
-    maskingFunction
+    maskingFunction,
+    maskingFunctionOnBlur
   } = props;
 
   const handleCroppedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,7 +44,9 @@ const SimpleField: React.SFC<SimpleFieldProps & FormikProps<FormValues>> = props
   };
 
   const handleTrimmedBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFieldValue(fieldName, e.target.value.trim().replace(/\s+/g, ' '));
+    if (maskingFunctionOnBlur) {
+      setFieldValue(fieldName, maskingFunctionOnBlur(e.target.value));
+    }
     handleBlur(e);
   };
 
