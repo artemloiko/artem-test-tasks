@@ -7,4 +7,6 @@
 
 .PhotoUpload__text {
   font-size: calc(16px + 2vmin);
+  line-height: 1.25;
+  text-align: center;
 }
