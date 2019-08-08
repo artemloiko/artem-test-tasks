@@ -36,7 +36,6 @@ const MaskedField: React.SFC<MaskedFieldProps & FormikProps<FormValues>> = props
     setFieldTouched(fieldName, false);
     handleChange(e);
   };
-
   return (
     <FormControl className={classes.formControl} variant="outlined" error={!!error && isTouched}>
       <InputMask mask={mask} maskChar={maskChar} value={value} onChange={handleCroppedChange} onBlur={handleBlur}>
