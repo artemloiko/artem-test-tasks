@@ -44,6 +44,9 @@ const SimpleField: React.SFC<SimpleFieldProps & FormikProps<FormValues>> = props
   };
 
   const handleTrimmedBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value) {
+      setFieldValue(fieldName, e.target.value.trim());
+    }
     if (maskingFunctionOnBlur) {
       setFieldValue(fieldName, maskingFunctionOnBlur(e.target.value));
     }

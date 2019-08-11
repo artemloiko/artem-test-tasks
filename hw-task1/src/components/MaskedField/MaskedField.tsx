@@ -5,7 +5,7 @@ import FormControl from '@material-ui/core/FormControl';
 import { FormikProps } from 'formik';
 import { FormValues } from '../../interfaces/formValues.interface';
 import { useStyles } from '../SimpleField/useStyles';
-import InputMask from 'react-input-mask';
+import InputMask, { InputState, MaskOptions } from 'react-input-mask';
 
 interface MaskedFieldProps {
   label: string;
@@ -15,6 +15,13 @@ interface MaskedFieldProps {
   maskChar?: string;
   isTouched?: boolean;
   error?: string;
+  beforeMaskedValueChange?: (
+    newState: InputState,
+    oldState: InputState,
+    userInput: string,
+    maskOptions: MaskOptions
+  ) => InputState;
+  // beforeMaskedValueChange:
 }
 
 const MaskedField: React.SFC<MaskedFieldProps & FormikProps<FormValues>> = props => {
@@ -29,7 +36,8 @@ const MaskedField: React.SFC<MaskedFieldProps & FormikProps<FormValues>> = props
     handleChange,
     mask,
     maskChar = ' ',
-    setFieldTouched
+    setFieldTouched,
+    beforeMaskedValueChange
   } = props;
 
   const handleCroppedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,7 +46,14 @@ const MaskedField: React.SFC<MaskedFieldProps & FormikProps<FormValues>> = props
   };
   return (
     <FormControl className={classes.formControl} variant="outlined" error={!!error && isTouched}>
-      <InputMask mask={mask} maskChar={maskChar} value={value} onChange={handleCroppedChange} onBlur={handleBlur}>
+      <InputMask
+        mask={mask}
+        maskChar={maskChar}
+        value={value}
+        onChange={handleCroppedChange}
+        onBlur={handleBlur}
+        beforeMaskedValueChange={beforeMaskedValueChange}
+      >
         {(inputProps: React.InputHTMLAttributes<HTMLInputElement>) => (
           <TextField
             label={label}

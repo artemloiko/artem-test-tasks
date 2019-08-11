@@ -117,6 +117,32 @@ export default function MyForm() {
                 error={errors.phone}
                 mask="+38 (099) 999 - 99 - 99"
                 maskChar="_"
+                beforeMaskedValueChange={(newState, oldState, userInput, maskOptions) => {
+                  let { value } = newState;
+                  const selection = newState.selection;
+
+                  if (userInput && /^380/.test(userInput.replace(/[^\d]/g, ''))) {
+                    const userInputNumbers: string = userInput.replace(/[^\d]/g, '').replace('380', '');
+                    let maskedInput: string = userInputNumbers
+                      .split('')
+                      .reduce((masked, item) => masked.replace('9', item), maskOptions.mask);
+
+                    maskedInput = maskedInput.replace(/9/g, maskOptions.maskChar);
+                    const selectionIndex =
+                      maskedInput.indexOf(maskOptions.maskChar) > 0
+                        ? maskedInput.indexOf(maskOptions.maskChar)
+                        : maskOptions.mask.length;
+                    value = maskedInput;
+                    if (selection) {
+                      selection.start = selection.end = selectionIndex;
+                    }
+                  }
+
+                  return {
+                    value,
+                    selection
+                  };
+                }}
               />
 
               <SimpleField
@@ -130,6 +156,7 @@ export default function MyForm() {
                   maxLength: 256
                 }}
                 maskingFunction={value => value.replace(/[^+\d ,;)(]/g, '')}
+                maskingFunctionOnBlur={value => value.trim().replace(/\s+/g, ' ')}
               />
 
               <MaskedField
