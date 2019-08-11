@@ -7,6 +7,16 @@
 
 .PhotoUpload__text {
   font-size: calc(16px + 2vmin);
-  line-height: 1.25;
+  line-height: 1.5;
+  margin-top: 0;
   text-align: center;
+}
+
+.PhotoUpload__image {
+  max-width: 200px;
+}
+
+.PhotoUpload__preview {
+  max-width: 50%;
+  margin: 20px;
 }
