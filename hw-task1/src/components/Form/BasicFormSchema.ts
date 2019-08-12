@@ -9,7 +9,12 @@ export const BasicFormSchema = Yup.object().shape({
   email: Yup.string()
     .trim()
     .matches(/^[-\w.а-яА-ЯёЁ]+@[-\w.а-яА-ЯёЁ]+\.[\w.а-яА-ЯёЁ]{2,}$/, 'Invalid email address')
-    .required('Required'),
+    .required('Required')
+    .test(
+      'emailLocalPart',
+      'Email local part (before @) can contains maximum 64 characters.',
+      value => /@/.test(value) && value.split('@')[0].length <= 64
+    ),
   emailRFC: Yup.string()
     .matches(
       // eslint-disable-next-line no-useless-escape
