@@ -121,8 +121,18 @@ export default function MyForm() {
                   let { value } = newState;
                   const selection = newState.selection;
                   // console.log('===\nbefore', value, selection, userInput);
-                  if (userInput && /^380/.test(userInput.replace(/[^\d]/g, ''))) {
-                    const userInputNumbers: string = userInput.replace(/[^\d]/g, '').replace('380', '');
+                  if (userInput && userInput.replace(/[^\d]/g, '')) {
+                    let userInputNumbers: string = userInput.replace(/[^\d]/g, '');
+                    if (/^380/.test(userInputNumbers)) {
+                      userInputNumbers = userInputNumbers.replace('380', '');
+                    } else if (/^0/.test(userInputNumbers)) {
+                      userInputNumbers = userInputNumbers.replace('0', '');
+                    } else {
+                      return {
+                        value,
+                        selection
+                      };
+                    }
                     let maskedInput: string = userInputNumbers
                       .split('')
                       .reduce(
@@ -130,7 +140,6 @@ export default function MyForm() {
                         maskOptions.mask.replace(/9/g, maskOptions.maskChar)
                       );
 
-                    // maskedInput = maskedInput.replace(/9/g, maskOptions.maskChar);
                     const selectionIndex =
                       maskedInput.indexOf(maskOptions.maskChar) > 0
                         ? maskedInput.indexOf(maskOptions.maskChar)
