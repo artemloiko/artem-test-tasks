@@ -125,7 +125,7 @@ export default function MyForm() {
                     let userInputNumbers: string = userInput.replace(/[^\d]/g, '');
                     if (/^380/.test(userInputNumbers)) {
                       userInputNumbers = userInputNumbers.replace('380', '');
-                    } else if (/^0/.test(userInputNumbers)) {
+                    } else if (/^0/.test(userInputNumbers) && userInputNumbers.length > 1) {
                       userInputNumbers = userInputNumbers.replace('0', '');
                     } else {
                       return {
