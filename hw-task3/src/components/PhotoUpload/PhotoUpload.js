@@ -1,6 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 import uploadImage from './PhotoUpload.png';
 import './PhotoUpload.css';
@@ -15,15 +17,15 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function PhotoUpload() {
-  let [imageFile, setImageFile] = useState();
+export default function PhotoUpload(props) {
   let fileRef = useRef();
   const classes = useStyles();
+  const { handleFileUpload } = props;
 
   const onFileInputChange = event => {
     console.log('event on file input', event);
     console.log('ref is', fileRef.current.files);
-    setImageFile(fileRef.current.files[0]);
+    handleFileUpload(fileRef.current.files[0]);
   };
 
   return (
@@ -47,17 +49,11 @@ export default function PhotoUpload() {
         type="file"
         onChange={onFileInputChange}
       />
-      {imageFile && (
-        <>
-          <p>Image info: </p>
-          <ol>
-            <li>Name: {imageFile.name}</li>
-            <li>Size: {imageFile.size}</li>
-            <li>Type: {imageFile.type}</li>
-          </ol>
-          <img src={URL.createObjectURL(imageFile)} alt={imageFile.name} className="PhotoUpload__preview" />
-        </>
-      )}
+      <FormHelperText>Minimum size 300x300 jpeg jpg png 5 MB</FormHelperText>
     </div>
   );
 }
+
+PhotoUpload.propTypes = {
+  handleFileUpload: PropTypes.func
+};

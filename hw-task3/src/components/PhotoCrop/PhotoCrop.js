@@ -15,9 +15,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function PhotoCrop(props) {
   const classes = useStyles();
-
-  const { image } = props;
-
   const [value, setValue] = React.useState(30);
 
   const handleChange = (event, newValue) => {
@@ -25,17 +22,33 @@ export default function PhotoCrop(props) {
     setValue(newValue);
   };
 
+  const { imageFile, handleStepChange, handleFileChange } = props;
+
+  console.log('imageFile', imageFile);
+
   return (
     <div className="PhotoCrop">
       <div className="PhotoCrop__wrap">
-        <img className="PhotoCrop__image" src={image} alt="Select it on your computer" />
+        <img className="PhotoCrop__image" src={URL.createObjectURL(imageFile)} alt={imageFile.name} />
       </div>
       <Slider value={value} onChange={handleChange} aria-labelledby="continuous-slider" />
       <div className="row">
-        <Button variant="contained" color="primary" component="span" className={classes.button}>
+        <Button
+          variant="contained"
+          color="primary"
+          component="span"
+          className={classes.button}
+          onClick={() => handleStepChange('photoUpload')}
+        >
           Change
         </Button>
-        <Button variant="contained" color="primary" component="span" className={classes.button}>
+        <Button
+          variant="contained"
+          color="primary"
+          component="span"
+          className={classes.button}
+          onClick={() => handleFileChange(imageFile)}
+        >
           Apply
         </Button>
       </div>
@@ -43,4 +56,8 @@ export default function PhotoCrop(props) {
   );
 }
 
-PhotoCrop.propTypes = { imageFile: PropTypes.object, handleStepChange: PropTypes.func };
+PhotoCrop.propTypes = {
+  imageFile: PropTypes.object,
+  handleStepChange: PropTypes.func,
+  handleFileChange: PropTypes.func
+};

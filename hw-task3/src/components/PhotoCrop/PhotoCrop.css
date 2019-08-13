@@ -6,11 +6,17 @@
 
 .PhotoCrop__wrap {
   margin-bottom: 20px;
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 1px darkslateblue dashed;
 }
 
 .PhotoCrop__image {
-  border-radius: 50%;
+  width: 100%;
 }
+
 .PhotoCrop__image:hover {
   cursor: move;
 }
