@@ -1,0 +1,21 @@
+.PhotoCrop {
+  max-width: 300px;
+  width: 300px;
+  margin: auto;
+}
+
+.PhotoCrop__wrap {
+  margin-bottom: 20px;
+}
+
+.PhotoCrop__image {
+  border-radius: 50%;
+}
+.PhotoCrop__image:hover {
+  cursor: move;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
