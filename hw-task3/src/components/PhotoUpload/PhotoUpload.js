@@ -1,8 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import FormHelperText from '@material-ui/core/FormHelperText';
+
+import { imageValidation } from '../../utils/validations';
 
 import uploadImage from './PhotoUpload.png';
 import './PhotoUpload.css';
@@ -20,12 +22,26 @@ const useStyles = makeStyles(theme => ({
 export default function PhotoUpload(props) {
   let fileRef = useRef();
   const classes = useStyles();
+  const [error, setError] = useState('');
+
   const { handleFileUpload } = props;
 
   const onFileInputChange = event => {
-    console.log('event on file input', event);
-    console.log('ref is', fileRef.current.files);
-    handleFileUpload(fileRef.current.files[0]);
+    const file = fileRef.current.files[0];
+    if (!file) {
+      setError('');
+      return;
+    }
+    console.log('check image', file);
+    imageValidation(file)
+      .then(() => {
+        console.log('image is fine', file);
+        handleFileUpload(fileRef.current.files[0]);
+      })
+      .catch(error => {
+        console.log('set error', error);
+        setError(error);
+      });
   };
 
   return (
@@ -49,7 +65,7 @@ export default function PhotoUpload(props) {
         type="file"
         onChange={onFileInputChange}
       />
-      <FormHelperText>Minimum size 300x300 jpeg jpg png 5 MB</FormHelperText>
+      <FormHelperText error={Boolean(error)}>{error || 'Minimum size 300x300 jpeg jpg png 5 MB'}</FormHelperText>
     </div>
   );
 }
