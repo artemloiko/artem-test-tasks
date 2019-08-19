@@ -1,10 +1,12 @@
 import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import { imageValidation } from '../../utils/validations';
+
+import FileDrop from 'react-file-drop';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import FormHelperText from '@material-ui/core/FormHelperText';
-
-import { imageValidation } from '../../utils/validations';
 
 import uploadImage from './PhotoUpload.png';
 import './PhotoUpload.css';
@@ -26,17 +28,11 @@ export default function PhotoUpload(props) {
 
   const { handleFileUpload } = props;
 
-  const onFileInputChange = event => {
-    const file = fileRef.current.files[0];
-    if (!file) {
-      setError('');
-      return;
-    }
-    console.log('check image', file);
+  const validateFile = file => {
     imageValidation(file)
       .then(() => {
         console.log('image is fine', file);
-        handleFileUpload(fileRef.current.files[0]);
+        handleFileUpload(file);
       })
       .catch(error => {
         console.log('set error', error);
@@ -44,14 +40,30 @@ export default function PhotoUpload(props) {
       });
   };
 
+  const onFileInputChange = event => {
+    const file = fileRef.current.files[0];
+    if (!file) {
+      setError('');
+      return;
+    }
+    console.log('check image', file);
+    validateFile(file);
+  };
+
+  const handleDrop = (files, event) => {
+    validateFile(files[0]);
+  };
+
   return (
     <div className="PhotoUpload">
+      <FileDrop onDrop={handleDrop} />
       <img className="PhotoUpload__image" src={uploadImage} alt="Select it on your computer" />
       <p className="PhotoUpload__text">
         Drag your photo here
         <br />
         or
       </p>
+
       <label htmlFor="fileUpload">
         <Button variant="contained" color="primary" component="span" className={classes.button}>
           Upload
