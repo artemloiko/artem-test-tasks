@@ -14,7 +14,7 @@ import './PhotoUpload.css';
 const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
-    width: 320
+    width: 300
   },
   input: {
     display: 'none'

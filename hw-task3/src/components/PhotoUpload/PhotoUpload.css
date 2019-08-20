@@ -6,7 +6,7 @@
 }
 
 .PhotoUpload__text {
-  font-size: calc(16px + 2vmin);
+  font-size: calc(16px + 0.75vmin);
   line-height: 1.5;
   margin-top: 0;
   text-align: center;
@@ -40,7 +40,7 @@
   width: 300px;
   height: 300px;
   position: absolute;
-  top: 25%;
+  transform: translateY(-60px);
 }
 
 .file-drop > .file-drop-target {

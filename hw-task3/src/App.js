@@ -28,7 +28,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        Task 3.
+        Task 3
       </header>
       {step === 'photoUpload' && <PhotoUpload handleFileUpload={handleFileUpload} />}
       {step === 'photoCrop' && (
