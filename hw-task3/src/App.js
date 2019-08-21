@@ -16,11 +16,8 @@ function App() {
     }
   });
 
-  const handleimageObjUpload = (imageUrl, dimensions) => {
-    setImageObj({
-      imageUrl,
-      dimensions
-    });
+  const handleimageObjUpload = imageObj => {
+    setImageObj(imageObj);
     setStep('photoCrop');
   };
 
@@ -28,7 +25,7 @@ function App() {
     setStep(stepName);
   };
 
-  const handleFileChange = imageObj => {
+  const handleCroppedImage = imageObj => {
     setImageObj(imageObj);
     setStep('photoResult');
   };
@@ -41,7 +38,7 @@ function App() {
       </header>
       {step === 'photoUpload' && <PhotoUpload handleImageUpload={handleimageObjUpload} />}
       {step === 'photoCrop' && (
-        <PhotoCrop imageObj={imageObj} handleStepChange={handleStepChange} handleImageCrop={handleFileChange} />
+        <PhotoCrop imageObj={imageObj} handleStepChange={handleStepChange} handleCroppedImage={handleCroppedImage} />
       )}
       {step === 'photoResult' && <PhotoResult imageObj={imageObj} handleStepChange={handleStepChange} />}
       <footer className="App-footer">&copy; Artem Loiko, 2019</footer>

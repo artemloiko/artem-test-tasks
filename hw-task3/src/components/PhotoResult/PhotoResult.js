@@ -12,11 +12,13 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function PhotoResult(props) {
-  const { imageFile, handleStepChange } = props;
+  const { imageObj, handleStepChange } = props;
+  const { imageUrl } = imageObj;
   const classes = useStyles();
+
   return (
     <div className="PhotoResult">
-      <img className="PhotoResult__image" src={URL.createObjectURL(imageFile)} alt={imageFile.name} />
+      <img className="PhotoResult__image" src={imageUrl} alt="Cropped" />
       <Button
         variant="contained"
         color="primary"
@@ -30,6 +32,6 @@ export default function PhotoResult(props) {
 }
 
 PhotoResult.propTypes = {
-  imageFile: PropTypes.object,
+  imageObj: PropTypes.object,
   handleStepChange: PropTypes.func
 };

@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Slider from '@material-ui/core/Slider';
+
+import Cropper from 'react-easy-crop';
+import getCroppedImg from './cropImage';
 
 import './PhotoCrop.css';
 
@@ -15,23 +19,70 @@ const useStyles = makeStyles(theme => ({
 
 export default function PhotoCrop(props) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(30);
 
-  const handleChange = (event, newValue) => {
-    console.log('slider value', newValue);
-    setValue(newValue);
+  const { imageObj, handleStepChange, handleCroppedImage } = props;
+
+  const { dimensions, imageUrl } = imageObj;
+  const minZoom = Math.max(dimensions.width, dimensions.height) / Math.min(dimensions.width, dimensions.height);
+  const maxZoom = 2;
+
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(minZoom);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState({});
+  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+    console.log('cropp', croppedArea, croppedAreaPixels);
+    setCroppedAreaPixels(croppedAreaPixels);
+  }, []);
+
+  const onZoomChange = zoom => {
+    console.log('zoom change', zoom);
+    setZoom(zoom);
   };
 
-  const { imageFile, handleStepChange, handleFileChange } = props;
-
-  console.log('imageFile', imageFile);
+  const handleCropImage = async () => {
+    console.log('handle crop', imageObj);
+    const croppedImage = await getCroppedImg(imageUrl, croppedAreaPixels);
+    console.log('croppedImage', croppedImage);
+    handleCroppedImage({
+      imageUrl: croppedImage,
+      dimensions: {
+        width: croppedAreaPixels.width,
+        height: croppedAreaPixels.height
+      }
+    });
+  };
 
   return (
     <div className="PhotoCrop">
       <div className="PhotoCrop__wrap">
-        <img className="PhotoCrop__image" src={URL.createObjectURL(imageFile)} alt={imageFile.name} />
+        <Cropper
+          image={imageUrl}
+          crop={crop}
+          zoom={zoom}
+          aspect={1}
+          onCropChange={setCrop}
+          onCropComplete={onCropComplete}
+          onZoomChange={onZoomChange}
+          showGrid={false}
+          minZoom={minZoom}
+          maxZoom={maxZoom}
+          cropSize={{
+            width: 300,
+            height: 300
+          }}
+        />
       </div>
-      <Slider value={value} onChange={handleChange} aria-labelledby="continuous-slider" />
+      <Slider
+        aria-labelledby="Image zoom"
+        value={zoom}
+        min={minZoom}
+        max={maxZoom}
+        step={(maxZoom - minZoom) / 10}
+        onChange={(e, zoom) => {
+          console.log('zoom in slider', zoom);
+          setZoom(zoom);
+        }}
+      />
       <div className="row">
         <Button
           variant="contained"
@@ -47,7 +98,7 @@ export default function PhotoCrop(props) {
           color="primary"
           component="span"
           className={classes.button}
-          onClick={() => handleFileChange(imageFile)}
+          onClick={handleCropImage}
         >
           Apply
         </Button>
@@ -57,7 +108,7 @@ export default function PhotoCrop(props) {
 }
 
 PhotoCrop.propTypes = {
-  imageFile: PropTypes.object,
+  imageObj: PropTypes.object,
   handleStepChange: PropTypes.func,
-  handleFileChange: PropTypes.func
+  handleCroppedImage: PropTypes.func
 };

@@ -5,6 +5,7 @@
 }
 
 .PhotoCrop__wrap {
+  position: relative;
   margin-bottom: 20px;
   width: 300px;
   height: 300px;
