@@ -1,13 +1,13 @@
 import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { loadAndValidateImage } from '../../utils/validations';
-import getCroppedImg from '../../utils/cropImage';
 
 import FileDrop from 'react-file-drop';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import Prealoder from '../Preloader/Prealoader';
 
 import uploadImage from './PhotoUpload.png';
 import './PhotoUpload.css';
@@ -26,11 +26,16 @@ export default function PhotoUpload(props) {
   let fileRef = useRef();
   const classes = useStyles();
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const { handleImageUpload } = props;
 
   const validateFile = file => {
     console.time('LOAD IMAGE');
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(true);
+    }, 700);
     loadAndValidateImage(file)
       .then(async imageObj => {
         console.log('image is fine', imageObj);
@@ -38,6 +43,7 @@ export default function PhotoUpload(props) {
         handleImageUpload({ ...imageObj });
       })
       .catch(error => {
+        setIsLoading(false);
         console.log('set error', error);
         setError(error);
       });
@@ -60,6 +66,7 @@ export default function PhotoUpload(props) {
   return (
     <div className="PhotoUpload">
       <FileDrop onDrop={handleDrop} />
+      {isLoading && <Prealoder />}
       <img className="PhotoUpload__image" src={uploadImage} alt="Select it on your computer" />
       <p className="PhotoUpload__text">
         Drag your photo here
