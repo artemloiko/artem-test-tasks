@@ -1,4 +1,4 @@
-export function imageValidation(f) {
+export function loadAndValidateImage(f) {
   return new Promise((resolve, reject) => {
     let error = '';
 
@@ -17,7 +17,8 @@ export function imageValidation(f) {
 
     //check dimensions
     const image = document.createElement('img');
-    image.src = window.URL.createObjectURL(f);
+    const imageUrl = window.URL.createObjectURL(f);
+    image.src = imageUrl;
     image.style.position = 'fixed';
     image.style.visibility = 'hidden';
     image.style.pointerEvents = 'none';
@@ -34,7 +35,7 @@ export function imageValidation(f) {
         reject(error);
       }
       if (image.parentElement) image.parentElement.removeChild(image);
-      resolve(true);
+      resolve({ imageUrl, dimensions: { width, height } });
     };
     document.getElementById('root').appendChild(image);
   });

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { imageValidation } from '../../utils/validations';
+import { loadAndValidateImage } from '../../utils/validations';
 
 import FileDrop from 'react-file-drop';
 
@@ -26,13 +26,13 @@ export default function PhotoUpload(props) {
   const classes = useStyles();
   const [error, setError] = useState('');
 
-  const { handleFileUpload } = props;
+  const { handleImageUpload } = props;
 
   const validateFile = file => {
-    imageValidation(file)
-      .then(() => {
-        console.log('image is fine', file);
-        handleFileUpload(file);
+    loadAndValidateImage(file)
+      .then(imageObj => {
+        console.log('image is fine', imageObj);
+        handleImageUpload(imageObj);
       })
       .catch(error => {
         console.log('set error', error);
@@ -83,5 +83,5 @@ export default function PhotoUpload(props) {
 }
 
 PhotoUpload.propTypes = {
-  handleFileUpload: PropTypes.func
+  handleImageUpload: PropTypes.func
 };

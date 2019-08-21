@@ -8,10 +8,19 @@ import PhotoResult from './components/PhotoResult/PhotoResult';
 
 function App() {
   let [step, setStep] = useState('photoUpload');
-  let [imageFile, setImageFile] = useState();
+  let [imageObj, setImageObj] = useState({
+    imageUrl: '',
+    dimensions: {
+      width: 0,
+      height: 0
+    }
+  });
 
-  const handleFileUpload = imageFile => {
-    setImageFile(imageFile);
+  const handleimageObjUpload = (imageUrl, dimensions) => {
+    setImageObj({
+      imageUrl,
+      dimensions
+    });
     setStep('photoCrop');
   };
 
@@ -19,8 +28,8 @@ function App() {
     setStep(stepName);
   };
 
-  const handleFileChange = imageFile => {
-    setImageFile(imageFile);
+  const handleFileChange = imageObj => {
+    setImageObj(imageObj);
     setStep('photoResult');
   };
 
@@ -30,11 +39,11 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         Task 3
       </header>
-      {step === 'photoUpload' && <PhotoUpload handleFileUpload={handleFileUpload} />}
+      {step === 'photoUpload' && <PhotoUpload handleImageUpload={handleimageObjUpload} />}
       {step === 'photoCrop' && (
-        <PhotoCrop imageFile={imageFile} handleStepChange={handleStepChange} handleFileChange={handleFileChange} />
+        <PhotoCrop imageObj={imageObj} handleStepChange={handleStepChange} handleImageCrop={handleFileChange} />
       )}
-      {step === 'photoResult' && <PhotoResult imageFile={imageFile} handleStepChange={handleStepChange} />}
+      {step === 'photoResult' && <PhotoResult imageObj={imageObj} handleStepChange={handleStepChange} />}
       <footer className="App-footer">&copy; Artem Loiko, 2019</footer>
     </div>
   );
