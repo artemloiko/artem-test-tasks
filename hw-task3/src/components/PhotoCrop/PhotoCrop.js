@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import Slider from '@material-ui/core/Slider';
 
 import Cropper from 'react-easy-crop';
-import getCroppedImg from './cropImage';
+import getCroppedImg from '../../utils/cropImage';
 
 import './PhotoCrop.css';
 
@@ -30,7 +30,6 @@ export default function PhotoCrop(props) {
   const [zoom, setZoom] = useState(minZoom);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState({});
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
-    console.log('cropp', croppedArea, croppedAreaPixels);
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
 

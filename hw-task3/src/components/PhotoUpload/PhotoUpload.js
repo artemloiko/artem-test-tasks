@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { loadAndValidateImage } from '../../utils/validations';
+import getCroppedImg from '../../utils/cropImage';
 
 import FileDrop from 'react-file-drop';
 
@@ -29,10 +30,12 @@ export default function PhotoUpload(props) {
   const { handleImageUpload } = props;
 
   const validateFile = file => {
+    console.time('LOAD IMAGE');
     loadAndValidateImage(file)
-      .then(imageObj => {
+      .then(async imageObj => {
         console.log('image is fine', imageObj);
-        handleImageUpload(imageObj);
+        console.timeEnd('LOAD IMAGE');
+        handleImageUpload({ ...imageObj });
       })
       .catch(error => {
         console.log('set error', error);

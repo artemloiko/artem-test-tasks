@@ -1,3 +1,5 @@
+import { fixImageOrientation } from './imageService';
+
 export function loadAndValidateImage(f) {
   return new Promise((resolve, reject) => {
     let error = '';
@@ -17,8 +19,7 @@ export function loadAndValidateImage(f) {
 
     //check dimensions
     const image = document.createElement('img');
-    const imageUrl = window.URL.createObjectURL(f);
-    image.src = imageUrl;
+    image.src = window.URL.createObjectURL(f);
     image.style.position = 'fixed';
     image.style.visibility = 'hidden';
     image.style.pointerEvents = 'none';
@@ -27,13 +28,14 @@ export function loadAndValidateImage(f) {
       if (image.parentElement) image.parentElement.removeChild(image);
       reject(error);
     };
-    image.onload = () => {
+    image.onload = async () => {
       const width = image.offsetWidth;
       const height = image.offsetHeight;
       if (width < 300 || height < 300) {
         error = 'The minimum size of image is 300x300';
         reject(error);
       }
+      const { imageUrl } = await fixImageOrientation(image);
       if (image.parentElement) image.parentElement.removeChild(image);
       resolve({ imageUrl, dimensions: { width, height } });
     };
