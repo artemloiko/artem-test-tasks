@@ -32,10 +32,8 @@ export default function PhotoUpload(props) {
 
   const validateFile = file => {
     console.time('LOAD IMAGE');
+    console.log('start loading');
     setIsLoading(true);
-    const loadingSetterTimeout = setTimeout(() => {
-      setIsLoading(true);
-    }, 1000);
     loadAndValidateImage(file)
       .then(async imageObj => {
         console.log('image is fine', imageObj);
@@ -43,7 +41,6 @@ export default function PhotoUpload(props) {
         handleImageUpload({ ...imageObj });
       })
       .catch(error => {
-        clearTimeout(loadingSetterTimeout);
         setIsLoading(false);
         console.log('set error', error);
         setError(error);
