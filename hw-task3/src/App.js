@@ -6,6 +6,8 @@ import PhotoUpload from './components/PhotoUpload/PhotoUpload';
 import PhotoCrop from './components/PhotoCrop/PhotoCrop';
 import PhotoResult from './components/PhotoResult/PhotoResult';
 
+import { resizeImage } from './utils/imageService';
+
 function App() {
   let [step, setStep] = useState('photoUpload');
   let [imageObj, setImageObj] = useState({
@@ -26,8 +28,17 @@ function App() {
   };
 
   const handleCroppedImage = imageObj => {
-    setImageObj(imageObj);
     setStep('photoResult');
+    setImageObj({ ...imageObj, imageUrl: null });
+    resizeImage(imageObj.imageUrl, { width: 300, height: 300 }).then(resizedImage => {
+      setImageObj({
+        imageUrl: resizedImage,
+        dimensions: {
+          width: 300,
+          height: 300
+        }
+      });
+    });
   };
 
   return (

@@ -1,4 +1,5 @@
 import EXIF from 'exif-js';
+import { imageProcessor, resize, sharpen } from 'ts-image-processor';
 
 const orientateCanvas = (context, img, orientation) => {
   context.canvas.width = img.naturalWidth;
@@ -86,3 +87,11 @@ export const getImageResolution = image => {
   });
   return promise;
 };
+
+export async function resizeImage(imageBase64, newSize) {
+  // Use any of the functions with an existing blob (base64-string)
+  return imageProcessor.src(imageBase64).pipe(
+    resize({ maxWidth: newSize.width, maxHeight: newSize.height }),
+    sharpen()
+  );
+}

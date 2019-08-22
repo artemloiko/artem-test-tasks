@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import PreloaderImage from '../Preloader/PrealoderImage';
+
 import './PhotoResult.css';
 
 const useStyles = makeStyles(theme => ({
@@ -18,7 +20,7 @@ export default function PhotoResult(props) {
 
   return (
     <div className="PhotoResult">
-      <img className="PhotoResult__image" src={imageUrl} alt="Cropped" />
+      {imageUrl ? <img className="PhotoResult__image" src={imageUrl} alt="Cropped" /> : <PreloaderImage />}
       <Button
         variant="contained"
         color="primary"
