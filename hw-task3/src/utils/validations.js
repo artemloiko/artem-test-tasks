@@ -35,7 +35,7 @@ export function loadAndValidateImage(f) {
         error = 'The minimum size of image is 300x300';
         reject(error);
       }
-      const { imageUrl } = await fixImageOrientation(image);
+      const { imageUrl } = await fixImageOrientation(image, f.type);
       if (image.parentElement) image.parentElement.removeChild(image);
       resolve({ imageUrl, dimensions: { width, height } });
     };

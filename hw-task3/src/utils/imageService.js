@@ -56,14 +56,14 @@ const orientateCanvas = (context, img, orientation) => {
   return context;
 };
 
-export const fixImageOrientation = img => {
+export const fixImageOrientation = (img, imageType) => {
   return new Promise(resolve => {
     let imageUrl = null;
     EXIF.getData(img, function() {
       const orientation = EXIF.getTag(this, 'Orientation');
       let context = document.createElement('canvas').getContext('2d');
       context = orientateCanvas(context, img, orientation);
-      imageUrl = context.canvas.toDataURL();
+      imageUrl = context.canvas.toDataURL(imageType);
       resolve({ imageUrl });
     });
   });
