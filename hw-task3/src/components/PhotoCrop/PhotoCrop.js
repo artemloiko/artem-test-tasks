@@ -23,8 +23,10 @@ export default function PhotoCrop(props) {
   const { imageObj, handleStepChange, handleCroppedImage } = props;
 
   const { dimensions, imageUrl } = imageObj;
+
+  // const minZoom = 1;
   const minZoom = Math.max(dimensions.width, dimensions.height) / Math.min(dimensions.width, dimensions.height);
-  const maxZoom = 2;
+  const maxZoom = minZoom * 2;
 
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(minZoom);
@@ -53,7 +55,7 @@ export default function PhotoCrop(props) {
 
   return (
     <div className="PhotoCrop">
-      <div className="PhotoCrop__wrap">
+      <div className="PhotoCrop__Cropper ">
         <Cropper
           image={imageUrl}
           crop={crop}
