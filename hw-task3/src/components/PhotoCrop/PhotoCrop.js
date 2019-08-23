@@ -26,7 +26,8 @@ export default function PhotoCrop(props) {
 
   // const minZoom = 1;
   const minZoom = Math.max(dimensions.width, dimensions.height) / Math.min(dimensions.width, dimensions.height);
-  const maxZoom = minZoom * 2;
+  const maxZoomCoef = Math.min(2, Math.min(dimensions.width, dimensions.height) / 300);
+  const maxZoom = minZoom * maxZoomCoef;
 
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(minZoom);
@@ -36,7 +37,6 @@ export default function PhotoCrop(props) {
   }, []);
 
   const onZoomChange = zoom => {
-    console.log('zoom change', zoom);
     setZoom(zoom);
   };
 
