@@ -6,12 +6,13 @@ import PhotoUpload from './components/PhotoUpload/PhotoUpload';
 import PhotoCrop from './components/PhotoCrop/PhotoCrop';
 import PhotoResult from './components/PhotoResult/PhotoResult';
 
-// import { resizeImage } from './utils/imageService';
+import { resizeImage } from './utils/imageService';
 
 function App() {
   let [step, setStep] = useState('photoUpload');
   let [imageObj, setImageObj] = useState({
     imageUrl: '',
+    imageType: 'image/jpeg',
     dimensions: {
       width: 0,
       height: 0
@@ -29,17 +30,19 @@ function App() {
 
   const handleCroppedImage = imageObj => {
     setStep('photoResult');
-    setImageObj({ ...imageObj });
-    // setImageObj({ ...imageObj, imageUrl: null });
-    // resizeImage(imageObj.imageUrl, { width: 300, height: 300 }).then(resizedImage => {
-    //   setImageObj({
-    //     imageUrl: resizedImage,
-    //     dimensions: {
-    //       width: 300,
-    //       height: 300
-    //     }
-    //   });
-    // });
+    setImageObj({ ...imageObj, imageUrl: null });
+    const newWidth = 300;
+    const newHeight = 300;
+    resizeImage(imageObj.imageUrl, imageObj.imageType, { width: newWidth, height: newHeight }).then(resizedImage => {
+      setImageObj({
+        ...imageObj,
+        imageUrl: resizedImage,
+        dimensions: {
+          width: newWidth,
+          height: newHeight
+        }
+      });
+    });
   };
 
   return (

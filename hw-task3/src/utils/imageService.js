@@ -1,5 +1,6 @@
 import EXIF from 'exif-js';
-import { imageProcessor, resize, sharpen } from 'ts-image-processor';
+// import { imageProcessor, resize, sharpen } from 'ts-image-processor';
+import { createImage } from './cropImage';
 
 const orientateCanvas = (context, img, orientation) => {
   context.canvas.width = img.naturalWidth;
@@ -88,10 +89,31 @@ export const getImageResolution = image => {
   return promise;
 };
 
-export async function resizeImage(imageBase64, newSize) {
-  // Use any of the functions with an existing blob (base64-string)
-  return imageProcessor.src(imageBase64).pipe(
-    resize({ maxWidth: newSize.width, maxHeight: newSize.height }),
-    sharpen()
-  );
+// export async function resizeImage(imageBase64, newSize) {
+//   // Use any of the functions with an existing blob (base64-string)
+//   return imageProcessor.src(imageBase64).pipe(
+//     resize({ maxWidth: newSize.width, maxHeight: newSize.height }),
+//     sharpen()
+//   );
+// }
+
+export async function resizeImage(imageUrl, imageType, newSize) {
+  return new Promise((resolve, reject) => {
+    const { width, height } = newSize;
+    const elem = document.createElement('canvas');
+    elem.width = width;
+    elem.height = height;
+    const ctx = elem.getContext('2d');
+    // img.width and img.height will contain the original dimensions
+    createImage(imageUrl).then(image => {
+      console.log('created image', image);
+      ctx.drawImage(image, 0, 0, width, height);
+      window.requestAnimationFrame(() => {
+        // resolve(ctx.canvas.toDataURL(imageType));
+        ctx.canvas.toBlob(file => {
+          resolve(URL.createObjectURL(file));
+        }, imageType);
+      });
+    });
+  });
 }

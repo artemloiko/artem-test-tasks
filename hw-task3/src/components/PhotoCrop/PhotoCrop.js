@@ -41,7 +41,7 @@ export default function PhotoCrop(props) {
   };
 
   const handleCropImage = async () => {
-    console.log('handle crop', imageObj, imageUrl);
+    console.log('handle crop', imageObj);
     const croppedImage = await getCroppedImg(imageUrl, croppedAreaPixels, imageType);
     console.log('croppedImage', croppedImage);
     handleCroppedImage({
