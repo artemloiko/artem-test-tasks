@@ -35,10 +35,10 @@ export default function PhotoUpload(props) {
     console.log('start loading');
     setIsLoading(true);
     loadAndValidateImage(file)
-      .then(async imageObj => {
+      .then(imageObj => {
         console.log('image is fine', imageObj);
         console.timeEnd('LOAD IMAGE');
-        handleImageUpload({ ...imageObj });
+        handleImageUpload({ ...imageObj, imageType: file.type });
       })
       .catch(error => {
         setIsLoading(false);

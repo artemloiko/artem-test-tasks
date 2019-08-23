@@ -20,7 +20,12 @@ export default function PhotoResult(props) {
 
   return (
     <div className="PhotoResult">
-      {imageUrl ? <img className="PhotoResult__image" src={imageUrl} alt="Cropped" /> : <PreloaderImage />}
+      {imageUrl ? (
+        <img className="PhotoResult__image" src={imageUrl} alt="Cropped" style={{ width: '300px' }} />
+      ) : (
+        <PreloaderImage />
+      )}
+      <p>{imageUrl}</p>
       <Button
         variant="contained"
         color="primary"

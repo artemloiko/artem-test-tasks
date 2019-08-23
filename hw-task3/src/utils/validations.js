@@ -20,6 +20,7 @@ export function loadAndValidateImage(f) {
     //check dimensions
     const image = document.createElement('img');
     image.src = window.URL.createObjectURL(f);
+    console.log('object url', image.src);
     image.style.position = 'fixed';
     image.style.visibility = 'hidden';
     image.style.pointerEvents = 'none';

@@ -12,7 +12,7 @@ const createImage = url =>
  * @param {File} image - Image File url
  * @param {Object} pixelCrop - pixelCrop Object provided by react-easy-crop
  */
-export default async function getCroppedImg(imageSrc, pixelCrop) {
+export default async function getCroppedImg(imageSrc, pixelCrop, imageType = 'image/jpeg') {
   const image = await createImage(imageSrc);
   const canvas = document.createElement('canvas');
   canvas.width = pixelCrop.width;
@@ -38,6 +38,6 @@ export default async function getCroppedImg(imageSrc, pixelCrop) {
   return new Promise((resolve, reject) => {
     canvas.toBlob(file => {
       resolve(URL.createObjectURL(file));
-    }, 'image/jpeg');
+    }, imageType);
   });
 }

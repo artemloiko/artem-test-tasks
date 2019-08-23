@@ -22,7 +22,7 @@ export default function PhotoCrop(props) {
 
   const { imageObj, handleStepChange, handleCroppedImage } = props;
 
-  const { dimensions, imageUrl } = imageObj;
+  const { dimensions, imageUrl, imageType } = imageObj;
 
   // const minZoom = 1;
   const minZoom = Math.max(dimensions.width, dimensions.height) / Math.min(dimensions.width, dimensions.height);
@@ -41,8 +41,8 @@ export default function PhotoCrop(props) {
   };
 
   const handleCropImage = async () => {
-    console.log('handle crop', imageObj);
-    const croppedImage = await getCroppedImg(imageUrl, croppedAreaPixels);
+    console.log('handle crop', imageObj, imageUrl);
+    const croppedImage = await getCroppedImg(imageUrl, croppedAreaPixels, imageType);
     console.log('croppedImage', croppedImage);
     handleCroppedImage({
       imageUrl: croppedImage,
