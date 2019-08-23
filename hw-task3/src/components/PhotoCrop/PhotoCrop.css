@@ -1,6 +1,7 @@
 .PhotoCrop {
   max-width: 300px;
   width: 300px;
+  padding: 20px 0;
   margin: auto;
 }
 
