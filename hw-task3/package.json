@@ -5,6 +5,7 @@
   "homepage": ".",
   "dependencies": {
     "@material-ui/core": "^4.3.2",
+    "blueimp-canvas-to-blob": "^3.16.0",
     "clsx": "^1.0.4",
     "exif-js": "^2.3.0",
     "react": "^16.8.6",

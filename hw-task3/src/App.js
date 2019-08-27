@@ -7,6 +7,7 @@ import PhotoCrop from './components/PhotoCrop/PhotoCrop';
 import PhotoResult from './components/PhotoResult/PhotoResult';
 
 import { resizeImage } from './utils/imageService';
+require('blueimp-canvas-to-blob');
 
 function App() {
   let [step, setStep] = useState('photoUpload');
