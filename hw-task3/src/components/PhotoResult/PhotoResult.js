@@ -9,7 +9,7 @@ import './PhotoResult.css';
 const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
-    width: 320
+    width: 300
   }
 }));
 
@@ -25,7 +25,7 @@ export default function PhotoResult(props) {
       ) : (
         <PreloaderImage />
       )}
-      <p>{imageUrl}</p>
+      <p className="PhotoResult__text">{imageUrl}</p>
       <Button
         variant="contained"
         color="primary"
