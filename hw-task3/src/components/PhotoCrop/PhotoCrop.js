@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Slider from '@material-ui/core/Slider';
+import Icon from '@material-ui/core/Icon';
 
 import Cropper from 'react-easy-crop';
 import getCroppedImg from '../../utils/cropImage';
@@ -14,6 +15,9 @@ const useStyles = makeStyles(theme => ({
   button: {
     margin: 0,
     width: 140
+  },
+  icon: {
+    margin: theme.spacing(1)
   }
 }));
 
@@ -28,6 +32,7 @@ export default function PhotoCrop(props) {
   const minZoom = Math.max(dimensions.width, dimensions.height) / Math.min(dimensions.width, dimensions.height);
   const maxZoomCoef = Math.min(2, Math.min(dimensions.width, dimensions.height) / 300);
   const maxZoom = minZoom * maxZoomCoef;
+  const zoomStep = (maxZoom - minZoom) / 10;
 
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(minZoom);
@@ -73,17 +78,47 @@ export default function PhotoCrop(props) {
           }}
         />
       </div>
-      <Slider
-        aria-labelledby="Image zoom"
-        value={zoom}
-        min={minZoom}
-        max={maxZoom}
-        step={(maxZoom - minZoom) / 10}
-        onChange={(e, zoom) => {
-          console.log('zoom in slider', zoom);
-          setZoom(zoom);
-        }}
-      />
+      <div className="row">
+        <Icon
+          className={classes.icon}
+          color={zoom.toFixed(2) === minZoom.toFixed(2) ? 'disabled' : 'secondary'}
+          style={{
+            cursor: zoom.toFixed(2) === minZoom.toFixed(2) ? 'default' : 'pointer'
+          }}
+          onClick={() => {
+            zoom.toFixed(2) > minZoom.toFixed(2) &&
+              setZoom((zoom - zoomStep).toFixed(2) < minZoom ? minZoom : zoom - zoomStep);
+          }}
+          disabled={true}
+        >
+          remove_circle
+        </Icon>
+        <Slider
+          aria-labelledby="Image zoom"
+          value={zoom}
+          min={minZoom}
+          max={maxZoom}
+          step={zoomStep}
+          onChange={(e, zoom) => {
+            setZoom(zoom);
+          }}
+        />
+        <Icon
+          className={classes.icon}
+          color={zoom.toFixed(2) === maxZoom.toFixed(2) ? 'disabled' : 'secondary'}
+          style={{
+            cursor: zoom.toFixed(2) === maxZoom.toFixed(2) ? 'default' : 'pointer'
+          }}
+          onClick={() => {
+            console.log('zoom', zoom, maxZoom);
+            zoom.toFixed(2) < maxZoom.toFixed(2) &&
+              setZoom((zoom + zoomStep).toFixed(2) > maxZoom ? maxZoom : zoom + zoomStep);
+          }}
+        >
+          add_circle
+        </Icon>
+      </div>
+
       <div className="row">
         <Button
           variant="contained"
