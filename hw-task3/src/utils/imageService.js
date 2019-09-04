@@ -62,6 +62,11 @@ export const fixImageOrientation = (img, imageType) => {
     let imageUrl = null;
     EXIF.getData(img, function() {
       const orientation = EXIF.getTag(this, 'Orientation');
+      const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      if (isIos && (orientation === 6 || orientation === 8)) {
+        resolve({ imageUrl: img.src });
+        return;
+      }
       let context = document.createElement('canvas').getContext('2d');
       context = orientateCanvas(context, img, orientation);
       imageUrl = context.canvas.toDataURL(imageType);
