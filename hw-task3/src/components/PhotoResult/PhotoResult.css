@@ -7,5 +7,6 @@
 }
 
 .PhotoResult__text {
+  word-break: break-all;
   padding: 0 20px;
 }
