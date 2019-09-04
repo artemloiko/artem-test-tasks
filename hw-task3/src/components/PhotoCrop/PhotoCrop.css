@@ -16,6 +16,8 @@
 
   backface-visibility: hidden;
   transform: translate3d(0, 0, 0);
+  -webkit-mask-image: -webkit-radial-gradient(circle, white, black);
+  mask-image: -webkit-radial-gradient(circle, white, black);
 }
 
 .PhotoCrop__image {
