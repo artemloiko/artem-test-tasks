@@ -13,6 +13,9 @@
   overflow: hidden;
   border-radius: 50%;
   border: 1px darkslateblue dashed;
+
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
 }
 
 .PhotoCrop__image {
