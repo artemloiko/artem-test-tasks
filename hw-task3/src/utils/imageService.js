@@ -1,5 +1,4 @@
 import EXIF from 'exif-js';
-// import { imageProcessor, resize, sharpen } from 'ts-image-processor';
 import { createImage } from './cropImage';
 
 const orientateCanvas = (context, img, orientation) => {
@@ -32,6 +31,7 @@ const orientateCanvas = (context, img, orientation) => {
       // 90° rotate right
       context.canvas.height = img.naturalWidth;
       context.canvas.width = img.naturalHeight;
+      console.dir(context.canvas);
       context.rotate(0.5 * Math.PI);
       context.translate(0, -context.canvas.width);
       break;
@@ -62,11 +62,6 @@ export const fixImageOrientation = (img, imageType) => {
     let imageUrl = null;
     EXIF.getData(img, function() {
       const orientation = EXIF.getTag(this, 'Orientation');
-      const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-      if (isIos && (orientation === 6 || orientation === 8)) {
-        resolve({ imageUrl: img.src });
-        return;
-      }
       let context = document.createElement('canvas').getContext('2d');
       context = orientateCanvas(context, img, orientation);
       imageUrl = context.canvas.toDataURL(imageType);
@@ -111,7 +106,6 @@ export async function resizeImage(imageUrl, imageType, newSize) {
     const ctx = elem.getContext('2d');
     // img.width and img.height will contain the original dimensions
     createImage(imageUrl).then(image => {
-      console.log('created image', image);
       ctx.drawImage(image, 0, 0, width, height);
       window.requestAnimationFrame(() => {
         // resolve(ctx.canvas.toDataURL(imageType));

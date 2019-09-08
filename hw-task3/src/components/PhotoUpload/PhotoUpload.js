@@ -32,7 +32,6 @@ export default function PhotoUpload(props) {
 
   const validateFile = file => {
     console.time('LOAD IMAGE');
-    console.log('start loading');
     setIsLoading(true);
     loadAndValidateImage(file)
       .then(imageObj => {
@@ -53,7 +52,6 @@ export default function PhotoUpload(props) {
       setError('');
       return;
     }
-    console.log('check image', file);
     validateFile(file);
   };
 

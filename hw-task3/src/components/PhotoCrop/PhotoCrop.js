@@ -110,7 +110,6 @@ export default function PhotoCrop(props) {
             cursor: zoom.toFixed(2) === maxZoom.toFixed(2) ? 'default' : 'pointer'
           }}
           onClick={() => {
-            console.log('zoom', zoom, maxZoom);
             zoom.toFixed(2) < maxZoom.toFixed(2) &&
               setZoom((zoom + zoomStep).toFixed(2) > maxZoom ? maxZoom : zoom + zoomStep);
           }}

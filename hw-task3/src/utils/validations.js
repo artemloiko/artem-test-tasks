@@ -18,28 +18,21 @@ export function loadAndValidateImage(f) {
     }
 
     //check dimensions
-    const image = document.createElement('img');
+    const image = new Image();
     image.src = window.URL.createObjectURL(f);
-    console.log('object url', image.src);
-    image.style.position = 'fixed';
-    image.style.visibility = 'hidden';
-    image.style.pointerEvents = 'none';
     image.onerror = () => {
       error = 'Please choose not broken image';
-      if (image.parentElement) image.parentElement.removeChild(image);
       reject(error);
     };
     image.onload = async () => {
-      const width = image.offsetWidth;
-      const height = image.offsetHeight;
+      const width = image.naturalWidth;
+      const height = image.naturalHeight;
       if (width < 300 || height < 300) {
         error = 'The minimum size of image is 300x300';
         reject(error);
       }
       const { imageUrl } = await fixImageOrientation(image, f.type);
-      if (image.parentElement) image.parentElement.removeChild(image);
       resolve({ imageUrl, dimensions: { width, height } });
     };
-    document.getElementById('root').appendChild(image);
   });
 }
