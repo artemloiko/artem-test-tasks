@@ -1,0 +1,70 @@
+.PhotoUpload {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  margin: 70px 0 20px;
+}
+
+.PhotoUpload__text {
+  font-size: calc(16px + 0.75vmin);
+  line-height: 1.5;
+  margin-top: 0;
+  text-align: center;
+}
+
+.PhotoUpload__image {
+  max-width: 200px;
+}
+
+.PhotoUpload__preview {
+  max-width: 50%;
+  margin: 20px;
+}
+
+.PhotoUpload__DnD {
+  transform: translateY(-20%);
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border: 2px dashed aquamarine;
+  background: repeating-linear-gradient(
+    45deg,
+    rgb(73, 231, 197) 0%,
+    rgb(73, 231, 197) 3%,
+    rgba(73, 231, 197, 0.2) 3%,
+    rgba(73, 231, 197, 0.2) 15%
+  );
+}
+
+.file-drop {
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  transform: translateY(-60px);
+}
+
+.file-drop > .file-drop-target {
+  height: 100%;
+  border: dashed 4px #000;
+  border-image-repeat: round;
+  border-image-slice: 1;
+  border-image-width: 2px;
+  border-image-source: url(http://i.stack.imgur.com/wLdVc.png);
+  opacity: 0.1;
+}
+
+.file-drop > .file-drop-target.file-drop-dragging-over-frame {
+  opacity: 0.35;
+  background: repeating-linear-gradient(
+    45deg,
+    rgb(73, 231, 197) 0%,
+    rgb(73, 231, 197) 3%,
+    rgba(73, 231, 197, 0.2) 3%,
+    rgba(73, 231, 197, 0.2) 15%
+  );
+}
+
+.file-drop > .file-drop-target.file-drop-dragging-over-target {
+  opacity: 1;
+}

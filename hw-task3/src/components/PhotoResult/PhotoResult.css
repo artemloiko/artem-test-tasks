@@ -1,0 +1,12 @@
+.PhotoResult {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px auto;
+}
+
+.PhotoResult__text {
+  word-break: break-all;
+  padding: 0 20px;
+}

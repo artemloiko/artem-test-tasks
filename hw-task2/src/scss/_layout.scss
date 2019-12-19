@@ -1,0 +1,31 @@
+.wrapper {
+  margin-top: 64px;
+}
+.container {
+  box-sizing: border-box;
+  padding-left: 15px;
+  padding-right: 15px;
+  max-width: 1170px;
+  width: 100%;
+  margin: auto;
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1170px) {
+  .container {
+    padding-left: 47px;
+    padding-right: 47px;
+  }
+}
+@media screen and (min-width: 700px) and (max-width: 1000px) {
+  .container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media only screen and (device-width: 375px) and (device-height: 812px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3) {
+  .container {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}

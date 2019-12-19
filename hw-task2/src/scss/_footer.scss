@@ -1,0 +1,264 @@
+//Note. Footer i start develop from 1024px. It default for 1024 and changes for other dimensions.
+.footer__wrapper {
+  width: 100%;
+  height: 314px;
+  background: $secondColor;
+}
+
+.footer {
+  background: $secondColor;
+  position: relative;
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 85px;
+    width: 100%;
+    border-bottom: 1px solid #5674b9;
+  }
+  &__nav {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    height: 85px;
+    //nav common
+    & .nav {
+      min-width: 454px;
+      margin: 0;
+    }
+
+    & .nav__link {
+      color: #fff;
+      font-weight: 300;
+    }
+  }
+  &__link {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 10px;
+  }
+}
+.footer__nav .nav__item:last-child {
+  display: none;
+}
+.footer-links {
+  display: grid;
+  grid-template-columns: 1fr repeat(4, 17.204301%);
+  padding: 26px 0 24px;
+  &__row {
+    display: flex;
+    flex-flow: column nowrap;
+    text-align: right;
+    align-items: flex-end;
+  }
+}
+
+.footer-links--contacts {
+  text-align: left;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  padding-left: 34px;
+  margin-top: -1px;
+  & li {
+    align-self: stretch;
+  }
+}
+.footer__link--contact {
+  position: relative;
+  display: inline-block;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 300;
+  margin-bottom: 20px;
+  letter-spacing: 0.4px;
+  &::before {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 28px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    left: -33px;
+    top: -1px;
+  }
+  .no-touch &:hover {
+    color: #fff;
+  }
+}
+
+.footer-links--bottom {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-top: 1px;
+}
+
+.footer-links--social {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-top: -12px;
+}
+.footer-link--social {
+  display: block;
+  width: 26px;
+  height: 26px;
+  margin-left: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: transparent;
+  overflow: hidden;
+  fill: #fff;
+  .no-touch &:hover svg {
+    fill: $mainColor;
+  }
+}
+
+.copyright {
+  color: #fff;
+  font-size: 12px;
+  margin-top: -2px;
+  font-weight: 300;
+  letter-spacing: 0.2px;
+}
+.edge,
+.firefox,
+.mac {
+  .footer__nav .nav__link,
+  .copyright,
+  .footer__link--contact,
+  .footer__link {
+    font-weight: 400;
+  }
+}
+
+//=========================================================
+//====================== Media 2k =========================
+//=========================================================
+
+@media screen and (min-width: 1170px) {
+  .footer-links {
+    grid-template-columns: 1fr repeat(4, 17.105%);
+  }
+  .copyright {
+    margin-top: -8px;
+  }
+}
+
+//=========================================================
+//================ Media tablet ===========================
+//=========================================================
+
+@media screen and (max-width: 1000px) {
+  .footer__wrapper {
+    height: 317px;
+  }
+  .footer-links {
+    grid-template-columns: 1fr repeat(4, 17.3%);
+  }
+  .footer-links--social {
+    margin: -11px 0 0;
+  }
+  .footer-links--contacts {
+    padding: 0;
+    margin-top: 1px;
+  }
+  .footer__nav .nav__item:last-child {
+    display: none;
+  }
+
+  .footer__link--contact {
+    font-size: 18px;
+    margin-bottom: 21px;
+    &::before {
+      display: none;
+    }
+  }
+  .copyright {
+    margin-top: -8px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .footer__wrapper {
+    height: auto;
+    height: 320px;
+  }
+  .footer {
+    padding: 0;
+    &::after {
+      top: 225px;
+    }
+  }
+
+  .footer__nav {
+    flex-flow: column nowrap;
+    align-items: center;
+    height: auto;
+    padding: 30px 0 25px;
+    & .nav {
+      min-width: 0;
+      flex-flow: column nowrap;
+      align-items: center;
+      width: 35%;
+      margin: 15px 0 0;
+      &__link {
+        text-align: center;
+        font-size: 16px;
+        height: 26px;
+      }
+    }
+  }
+
+  .footer-links {
+    display: block;
+    padding: 22px 0 0;
+  }
+
+  .footer-links__row {
+    display: none;
+    &:first-child {
+      display: flex;
+      text-align: center;
+    }
+  }
+
+  .footer-links--contacts {
+    margin: 0;
+    .footer__link--contact {
+      margin: 0;
+      height: 34px;
+      font-size: 18px;
+    }
+  }
+
+  .footer-links--bottom {
+    flex-flow: column nowrap;
+    align-items: center;
+    padding: 0 0 30px 0;
+  }
+  .footer-links--social {
+    order: -1;
+    margin: 16px 0;
+  }
+
+  .footer-link--social:first-child {
+    margin: 0;
+  }
+
+  .copyright {
+    margin: 0;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 321px) {
+  .footer .nav {
+    min-width: 0;
+    width: 134px;
+  }
+}

@@ -1,0 +1,391 @@
+//Note. Header i start develop from 1024px. It default for 1024 and changes for other dimensions.
+
+.header__wrapper {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  background: #fff;
+  z-index: 1;
+  height: 64px;
+}
+
+.header {
+  position: fixed;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  background: #fff;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+  &__nav {
+    max-width: 485px;
+    flex-grow: 1;
+  }
+  & .logo--wrap {
+    margin-right: 67px;
+  }
+}
+
+.logo {
+  width: 134px;
+  height: 25px;
+}
+
+.nav {
+  position: relative;
+  top: -2px;
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 0;
+  justify-content: space-between;
+  list-style-type: none;
+  &__link {
+    display: block;
+    color: black;
+    font-weight: 400;
+  }
+}
+
+.account {
+  width: 220px;
+  margin-left: 34px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  transition: all 0.2s ease;
+  &-info {
+    text-align: right;
+    font-size: 14px;
+    max-width: 121px;
+    position: relative;
+    top: -2px;
+  }
+  &__name {
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &__email {
+    font-size: 13px;
+    font-weight: 400;
+    color: #8d8c8c;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &__img {
+    width: 100%;
+    transition: opacity 0.3s ease;
+    &--wrap {
+      background: #ccc;
+      overflow: hidden;
+      width: 40px;
+      height: 40px;
+      margin-left: 11px;
+      border-radius: 50%;
+      position: relative;
+      left: 2px;
+      margin-right: 8px;
+    }
+  }
+  &__logOut {
+    display: block;
+    width: 32px;
+    height: 20px;
+    margin-right: 9px;
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-image: url(./../img/icons/sign-out.svg);
+    &:hover {
+      background-image: url(./../img/icons/sign-out-hover.svg);
+    }
+  }
+}
+
+//=========================================================
+//=============== Account placeholder =====================
+//=========================================================
+
+.account--placeholder {
+  .account-info {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-end;
+  }
+  .account__name,
+  .account__email {
+    position: relative;
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      right: 0;
+      width: 100%;
+      height: 80%;
+      bottom: 0;
+      background: #eee;
+      border-radius: 2px;
+    }
+  }
+  .account__img--wrap {
+    background: #eee;
+  }
+}
+
+.body-block {
+  position: static;
+  overflow: visible;
+}
+@media screen and (min-width: 1001px) {
+  .page__wrapper {
+    transform: none !important;
+  }
+}
+//==================== 2k changes =====================
+
+@media screen and (min-width: 1170px) {
+  .header__nav {
+    max-width: 485px;
+  }
+  .account {
+    margin-left: 20px;
+  }
+  .account__logOut {
+    margin-right: 0;
+  }
+}
+//==================== Mobile changes =====================
+.header-mobile {
+  display: none;
+}
+.nav__link.signOut {
+  display: none;
+}
+
+//===========================================================
+//================ Media tablet + mobile ====================
+//===========================================================
+
+@media screen and (max-width: 1000px) {
+  .body-block {
+    position: fixed;
+    overflow: hidden;
+  }
+  .page__wrapper {
+    transform: none;
+  }
+  .account--placeholder .account-info {
+    align-items: flex-start;
+  }
+  .nav__link.signOut {
+    display: block;
+  }
+  .header__wrapper {
+    position: static;
+    height: 0;
+  }
+  .header-mobile {
+    z-index: 1;
+    display: flex;
+    position: fixed;
+    justify-content: space-between;
+    align-items: center;
+    top: 0;
+    width: 100%;
+    height: 64px;
+    background: #fff;
+    box-sizing: border-box;
+    & .logo {
+      display: block;
+      position: relative;
+      left: 2px;
+    }
+    & .toggle-menu {
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      user-select: none;
+      position: relative;
+      top: 2px;
+    }
+  }
+
+  .header {
+    transform: translate(-100%);
+    transition: transform 0.25s ease;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    left: 0;
+    width: 259px;
+    height: 100vh;
+    min-height: 475px;
+    z-index: 100;
+    &__nav {
+      width: 100%;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+    & .nav {
+      flex-flow: column nowrap;
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin: 30px 0 0 -1px;
+      &__item {
+        width: 100%;
+        position: relative;
+        margin-bottom: 25px;
+
+        &:first-child {
+          top: 1px;
+          left: 1px;
+        }
+        &:nth-last-child(2) {
+          top: -3px;
+          left: 1px;
+        }
+        &:nth-last-child(3) {
+          top: -2px;
+        }
+        &:last-child {
+          left: 1px;
+        }
+      }
+      &__link {
+        display: inline;
+        color: #111;
+      }
+    }
+    & .logo {
+      display: none;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      top: 179px;
+      left: 0;
+      display: block;
+      width: 100%;
+      border-bottom: 1px solid #e1e1e1;
+    }
+  }
+
+  .account {
+    position: relative;
+    order: -1;
+    height: 179px;
+    flex-flow: column-reverse nowrap;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 0;
+    &__img--wrap {
+      margin: 0;
+      margin-bottom: 15px;
+      width: 67px;
+      height: 67px;
+    }
+    &-info {
+      text-align: left;
+      font-size: 20px;
+      margin-top: 2px;
+    }
+    &__email {
+      position: relative;
+      top: 3px;
+      font-size: 13px;
+    }
+    &__logOut {
+      display: none;
+    }
+  }
+
+  .toggle-menu {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    height: 64px;
+    &__line {
+      position: relative;
+      width: 23px;
+      height: 4px;
+      background: #283593;
+      border-radius: 2px;
+      &:nth-child(2) {
+        margin: 5px 0;
+        opacity: 1;
+      }
+      transition: transform 0.3s cubic-bezier(0.8, 0.5, 0.2, 1.4),
+        opacity 0.1s ease;
+    }
+  }
+
+  .opened .toggle-menu__line {
+    &:first-child {
+      transform: translateY(9px) rotate(45deg) scaleX(1.1);
+    }
+    &:nth-child(2) {
+      opacity: 0;
+    }
+
+    &:last-child {
+      transform: translateY(-9px) rotate(-45deg) scaleX(1.1);
+    }
+  }
+
+  .opened.header {
+    transform: none;
+  }
+  .opened.scroll {
+    transform: scaleX(1);
+  }
+  .header {
+    position: static;
+  }
+  .scroll {
+    transform: scaleX(0);
+    transform-origin: top left;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 259px;
+    z-index: 100;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    transition: transform 0.2s ease;
+  }
+}
+@media screen and (max-width: 321px) {
+  .scroll {
+    width: 250px;
+  }
+  .header {
+    width: 250px;
+  }
+  .header-mobile {
+    & .logo {
+      display: block;
+      position: relative;
+      left: 2px;
+    }
+    & .toggle-menu {
+      position: relative;
+      top: 1px;
+    }
+  }
+  .account {
+    position: relative;
+    top: 1px;
+    &__img--wrap {
+      left: 1px;
+    }
+  }
+}
+@media screen and (max-width: 1000px) and (orientation: portrait) {
+  .scroll {
+    overflow: hidden;
+  }
+}

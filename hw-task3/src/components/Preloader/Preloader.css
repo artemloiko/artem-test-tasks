@@ -1,0 +1,68 @@
+.lds-heart {
+  display: inline-block;
+  position: relative;
+  width: 128px;
+  height: 128px;
+  transform: translateY(-60px) rotate(45deg);
+  transform-origin: 64px 64px;
+  position: absolute;
+  animation: slow-appear 1s linear;
+}
+.lds-heart div {
+  top: 46px;
+  left: 38px;
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  background: hotpink;
+  animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.lds-heart div:after,
+.lds-heart div:before {
+  content: ' ';
+  position: absolute;
+  display: block;
+  width: 52px;
+  height: 52px;
+  background: hotpink;
+}
+.lds-heart div:before {
+  left: -34px;
+  border-radius: 50% 0 0 50%;
+}
+.lds-heart div:after {
+  top: -34px;
+  border-radius: 50% 50% 0 0;
+}
+@keyframes lds-heart {
+  0% {
+    transform: scale(0.95);
+  }
+  5% {
+    transform: scale(1.1);
+  }
+  39% {
+    transform: scale(0.85);
+  }
+  45% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(0.9);
+  }
+}
+
+@keyframes slow-appear {
+  0% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0.05;
+  }
+  100% {
+    opacity: 1;
+  }
+}

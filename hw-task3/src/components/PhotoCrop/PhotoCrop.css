@@ -1,0 +1,35 @@
+.PhotoCrop {
+  max-width: 300px;
+  width: 300px;
+  padding: 20px 0;
+  margin: auto;
+}
+
+.PhotoCrop__Cropper {
+  position: relative;
+  margin-bottom: 20px;
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: none;
+
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  -webkit-mask-image: -webkit-radial-gradient(circle, white, black);
+  mask-image: -webkit-radial-gradient(circle, white, black);
+}
+
+.PhotoCrop__image {
+  width: 100%;
+}
+
+.PhotoCrop__image:hover {
+  cursor: move;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

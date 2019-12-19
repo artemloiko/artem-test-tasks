@@ -1,0 +1,13 @@
+//=========================================================
+//============== Footer:Contact links =====================
+//=========================================================
+
+.footer__link--contact.email::before {
+  background-image: url('./../img/icons/mail.svg');
+}
+.footer__link--contact.phone::before {
+  background-image: url('./../img/icons/phone.svg');
+}
+.footer__link--contact.cellphone::before {
+  background-image: url('./../img/icons/cellphone.svg');
+}

@@ -1,0 +1,234 @@
+//Note. Banner i start develop from 1024px. It default for 1024 and changes for other dimensions.
+
+.banner {
+  display: flex;
+  height: 725px;
+}
+.banner-content {
+  width: 50%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  margin: 0 auto 0 0;
+  padding-right: 0;
+  color: #fff;
+  &__head {
+    margin: 133px 0 18px;
+    color: #fff;
+    font-weight: 400;
+    text-shadow: rgba(0, 0, 0, 0.45) 0 2px 4px;
+  }
+  &__text {
+    width: 93%;
+    margin: 0;
+    line-height: 26px;
+    letter-spacing: 0.4px;
+    color: #fff;
+    font-weight: 300;
+  }
+  &__btn {
+    margin: 40px 0 0;
+  }
+}
+.banner__wrapper {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-image: url(./../img/banners/banner-320.jpg);
+}
+
+.mac .banner-content__btn {
+  font-weight: 700;
+}
+.mac .banner-content__text {
+  font-weight: 400;
+  width: 100%;
+}
+.mac .banner-content__head {
+  margin: 128px 0 24px;
+  font-weight: 600;
+}
+
+.no-mobile {
+  margin-left: 3px;
+}
+//=========================================================
+//=================== Media: Tablet =======================
+//=========================================================
+
+@media screen and (max-width: 1000px) {
+  .banner {
+    height: 622px;
+  }
+  .banner-content {
+    width: 55%;
+    &__head {
+      font-weight: 400;
+      margin: 114px 0 21px;
+    }
+    &__text {
+      width: 100%;
+      font-size: 18px;
+      line-height: 24px;
+      letter-spacing: 0.25px;
+    }
+    &__btn {
+      margin-top: 32px;
+    }
+  }
+
+  .mac .banner-content__head {
+    font-weight: 600;
+    margin-top: 110px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .banner-content {
+    width: 67%;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .no-mobile {
+    display: none;
+  }
+  .banner {
+    height: 393px;
+    text-align: center;
+  }
+  .banner-content {
+    align-items: center;
+    width: 100%;
+    &__head {
+      font-weight: 400;
+      line-height: 34px;
+      margin: 66px 0 11px;
+      text-shadow: rgba(0, 0, 0, 0.15) 0 2px 4px;
+    }
+    &__text {
+      font-size: 16px;
+      line-height: 22px;
+    }
+    &__btn {
+      margin-top: 37px;
+    }
+  }
+  .mac .banner-content__head {
+    margin: 64px 0 13px;
+  }
+  .mac .banner-content__btn {
+    margin-top: 39px;
+  }
+}
+
+//=========================================================
+//=================== Media: Mobile =======================
+//=========================================================
+
+@media screen and (max-width: 321px) {
+  .btn {
+    width: 100%;
+  }
+}
+
+//=========================================================
+//=================== Media: 2560x ========================
+//=========================================================
+
+@media screen and (min-width: 1170px) {
+  .banner {
+    height: 676px;
+  }
+  .no-mobile {
+    display: block;
+    margin-left: 0;
+  }
+  .banner-content {
+    width: 51%;
+    &__head {
+      position: relative;
+      margin: 135px 0 16px;
+    }
+    &__text {
+      position: relative;
+      margin: 0;
+      line-height: 26px;
+      font-size: 20px;
+      width: 84%;
+      & .no-mobile {
+        width: 115%;
+      }
+    }
+    &__btn {
+      position: relative;
+      margin: 34px 0 0;
+      top: -3px;
+    }
+  }
+  .mac .banner-content__text {
+    width: 85%;
+  }
+}
+
+//=========================================================
+//======================= Banners =========================
+//=========================================================
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .banner__wrapper {
+    background-image: url(./../img/banners/banner-320@2x.jpg);
+  }
+}
+
+@media (min-width: 321px) {
+  .banner__wrapper {
+    background-image: url(./../img/banners/banner-480@2x.jpg);
+  }
+}
+@media (min-width: 481px) {
+  .banner__wrapper {
+    background-image: url(./../img/banners/banner-768.jpg);
+  }
+}
+@media (-webkit-min-device-pixel-ratio: 2) and (min-width: 481px),
+  (min-resolution: 192dpi) and (min-width: 481px) {
+  .banner__wrapper {
+    background-image: url(./../img/banners/banner-768@2x.jpg);
+  }
+}
+@media (min-width: 769px) {
+  .banner__wrapper {
+    background-image: url(./../img/banners/banner-1024.jpg);
+  }
+}
+@media (-webkit-min-device-pixel-ratio: 2) and (min-width: 769px),
+  (min-resolution: 192dpi) and (min-width: 769px) {
+  .banner__wrapper {
+    background-image: url(./../img/banners/banner-1024@2x.jpg);
+  }
+}
+@media (min-width: 1025px) {
+  .banner__wrapper {
+    background-image: url(./../img/banners/banner-1280.jpg);
+  }
+}
+@media (min-width: 1281px) {
+  .banner__wrapper {
+    background-image: url(./../img/banners/banner-1440.jpg);
+  }
+}
+@media (min-width: 1441px) {
+  .banner__wrapper {
+    background-image: url(./../img/banners/banner-1680.jpg);
+  }
+}
+@media (min-width: 1681px) {
+  .banner__wrapper {
+    background-image: url(./../img/banners/banner-1920.jpg);
+  }
+}
+@media (min-width: 1921px) {
+  .banner__wrapper {
+    background-image: url(./../img/banners/banner-2k.jpg);
+  }
+}
