@@ -1,0 +1,232 @@
+.requirements__wrapper {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-image: url(../img/bg_img/bg-req-320.jpg);
+}
+.requirements {
+  margin-top: -3px;
+
+  padding-top: 66px;
+  padding-bottom: 26px;
+  height: 1031px;
+  &__head {
+    color: #fff;
+    text-align: center;
+    margin: 0 0 24px;
+    font-weight: 400;
+  }
+  &-content {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    text-align: center;
+    &__img {
+      width: 88%;
+      max-width: 420px;
+      margin-bottom: 22px;
+    }
+    &__head {
+      margin: 25px 0 10px;
+    }
+    &__text {
+      margin: 0 0 22px;
+      color: #fff;
+      line-height: 22px;
+      font-weight: 400;
+      font-size: 16.5px;
+    }
+    &__btn {
+      margin-top: -8px;
+    }
+  }
+}
+.br-2k {
+  display: none;
+}
+
+.mac {
+  & .requirements {
+    padding-top: 63px;
+  }
+  & .requirements__head {
+    font-weight: 600;
+    margin-bottom: 27px;
+  }
+  & .requirements-content__text {
+    font-weight: 400;
+  }
+}
+//=========================================================
+//=================== Media: Tablet =======================
+//=========================================================
+
+@media screen and (min-width: 600px) {
+  .requirements {
+    margin-top: 0px;
+    height: 878px;
+    padding-top: 50px;
+    &__head {
+      padding-top: 64px;
+      margin-bottom: 37px;
+    }
+  }
+  .requirements-content {
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    &__info {
+      width: 75%;
+    }
+    &__img {
+      width: 68%;
+    }
+    &__text {
+      font-weight: 300;
+      margin-bottom: 22px;
+      width: 90%;
+      text-align: left;
+    }
+  }
+  .mac {
+    & .requirements {
+      padding-top: 46px;
+    }
+    & .requirements__head {
+      font-weight: 600;
+      margin-bottom: 41px;
+    }
+    .requirements-content__text {
+      font-weight: 400;
+      width: 94%;
+    }
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 700px) {
+  .requirements-content__text {
+    width: 98%;
+  }
+}
+//=========================================================
+//=================== Media: Desktop ======================
+//=========================================================
+
+@media screen and (min-width: 769px) {
+  .requirements {
+    height: 755px;
+    padding-top: 70px;
+    &__head {
+      margin-bottom: 40px;
+    }
+  }
+  .requirements-content {
+    justify-content: space-between;
+
+    &__info {
+      width: 49%;
+    }
+    &__img {
+      max-width: none;
+      width: 46%;
+      margin-top: 16px;
+    }
+    &__text {
+      width: 99%;
+      text-align: left;
+    }
+  }
+
+  .mac {
+    & .requirements {
+      padding-top: 67px;
+    }
+    & .requirements__head {
+      margin-bottom: 43px;
+    }
+    & .requirements-content__text {
+      width: 102%;
+    }
+  }
+}
+@media screen and (min-width: 769px) and (max775-width: 775px) {
+  .requirements__head {
+    font-size: 40px;
+  }
+  .requirements-content__text {
+    width: 108%;
+  }
+}
+//=========================================================
+//=================== Media: 2560x ========================
+//=========================================================
+
+@media screen and (min-width: 1025px) {
+  .br-2k {
+    display: block;
+  }
+  .requirements {
+    height: 692px;
+    &__head {
+      margin-bottom: 40px;
+      font-weight: 400;
+    }
+  }
+  .requirements-content {
+    &__text {
+      margin-bottom: 21px;
+      font-weight: 300;
+    }
+    &__img {
+      margin-top: 0;
+      width: 37.5%;
+      margin-right: 64px;
+    }
+    &__info {
+      width: 49%;
+    }
+  }
+  .mac .requirements-content__info {
+    width: 51%;
+  }
+}
+
+@media only screen and (device-width: 375px) and (device-height: 812px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3) {
+  .requirements {
+    height: auto;
+    padding-bottom: 100px;
+  }
+}
+
+//===========================================================
+//===================== Backgrounds =============================
+//===========================================================
+
+@media (min-width: 321px) {
+  .requirements__wrapper {
+    background-image: url(../img/bg_img/bg-req-480.jpg);
+  }
+}
+@media (min-width: 481px) {
+  .requirements__wrapper {
+    background-image: url(../img/bg_img/bg-req-768.jpg);
+  }
+}
+@media (min-width: 1024px) {
+  .requirements__wrapper {
+    background-image: url(../img/bg_img/bg-req-1024.jpg);
+  }
+}
+@media (min-width: 1280px) {
+  .requirements__wrapper {
+    background-image: url(../img/bg_img/bg-req-1280.jpg);
+  }
+}
+@media (min-width: 1440px) {
+  .requirements__wrapper {
+    background-image: url(../img/bg_img/bg-req-1440.jpg);
+  }
+}
+@media (min-width: 1920px) {
+  .requirements__wrapper {
+    background-image: url(../img/bg_img/bg-req-1920.jpg);
+  }
+}

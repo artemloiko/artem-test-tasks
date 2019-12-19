@@ -1,0 +1,207 @@
+// Variables
+$mainColor: #ef6c00;
+$secondColor: #283593;
+$bgColor: #fff;
+
+//style guide styles
+html {
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Helvetica, Arial, sans-serif;
+}
+body {
+  margin: 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a {
+  text-decoration: none;
+  &:focus {
+    outline: none;
+  }
+}
+.no-touch a:hover {
+  color: $mainColor;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Overpass', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
+  font-weight: 600;
+}
+h1 {
+  font-size: 50px;
+  line-height: 60px;
+}
+h2 {
+  font-size: 42px;
+  line-height: 51px;
+}
+h3 {
+  font-size: 26px;
+  line-height: 32px;
+}
+h4 {
+  font-size: 22px;
+  line-height: 26px;
+}
+h5 {
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+}
+p {
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: #393939;
+}
+
+.btn {
+  box-sizing: border-box;
+  display: block;
+  width: 290px;
+  height: 40px;
+  line-height: 34px;
+  border: 2px solid $mainColor;
+  border-radius: 4px;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn.primary {
+  background: $mainColor;
+  color: #fff;
+  .no-touch &:hover {
+    border-color: #fc831f;
+    background: #fc831f;
+    color: #fff;
+  }
+}
+.btn.secondary {
+  background: #fff;
+  color: $mainColor;
+  font-weight: 700;
+  .no-touch &:hover {
+    background: #fee6d2;
+  }
+}
+.btn.plain {
+  border: none;
+  width: auto;
+  color: $mainColor;
+  letter-spacing: normal;
+  font-size: 22px;
+  font-weight: 700;
+  .no-touch &:hover {
+    color: #fc831f;
+  }
+}
+.btn:disabled,
+.btn.disabled {
+  font-weight: 700;
+  border-color: #d7d7d7;
+  background: #d7d7d7;
+  color: #929191;
+  cursor: default;
+}
+.no-touch .btn:disabled:hover,
+.no-touch .btn.disabled:hover {
+  background: #d7d7d7;
+  border-color: #d7d7d7;
+  color: #929191;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #000;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 50;
+  transition: opacity 0.1s ease;
+}
+.opened.overlay {
+  opacity: 0.32;
+  pointer-events: all;
+}
+.overlay--mobile {
+  display: none;
+}
+
+@media screen and (max-width: 999px) {
+  .overlay--mobile {
+    display: block;
+  }
+  h1 {
+    font-size: 42px;
+    line-height: 51px;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  h1 {
+    font-size: 30px;
+    line-height: 34px;
+  }
+  h2 {
+    font-size: 26px;
+    line-height: 32px;
+  }
+  h3 {
+    font-size: 22px;
+    line-height: 26px;
+  }
+  h5 {
+    font-size: 16px;
+  }
+}
+
+//==============================================================
+//============= breaks styles for text indent ==================
+//==============================================================
+.br,
+.tablet-br,
+.desktop-br {
+  display: none;
+}
+@media screen and (min-width: 600px) {
+  .mob-br {
+    display: none;
+  }
+  .br,
+  .tablet-br {
+    display: block;
+  }
+}
+@media screen and (min-width: 769px) {
+  .tablet-br {
+    display: none;
+  }
+  .desktop-br {
+    display: block;
+  }
+}
+@media screen and (min-width: 1025px) {
+  .desktop-br {
+    display: none;
+  }
+}

@@ -1,0 +1,351 @@
+.users {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 67px;
+  &__head {
+    margin: 0;
+    margin-bottom: 12px;
+  }
+  &__subhead {
+    margin: 0;
+    margin-bottom: 29px;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: stretch;
+  }
+  &__btn {
+    cursor: pointer;
+    position: relative;
+    margin-top: 28px;
+  }
+}
+
+.user {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 27px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  &__img {
+    margin-bottom: 14px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: #ccc;
+    overflow: hidden;
+    color: transparent;
+  }
+  &__name {
+    margin: 0;
+    margin-bottom: 3px;
+    text-align: center;
+    width: 80%;
+    max-width: 290px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &__text {
+    font-size: 14px;
+    color: #4c4b4b;
+    margin-bottom: 1px;
+    max-width: 290px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &__email {
+    white-space: nowrap;
+  }
+}
+.mac .users {
+  padding-top: 64px;
+}
+.mac .users__head {
+  margin-bottom: 15px;
+}
+.mac .user {
+  &__img {
+    margin-bottom: 12px;
+  }
+  &__name {
+    margin-bottom: 5px;
+  }
+}
+
+//=========================================================
+//================= User button states ====================
+//=========================================================
+
+.users__btn {
+  &::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 36px;
+    height: 36px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 0;
+    background-color: #000;
+    border-radius: 100%;
+    pointer-events: none;
+    -webkit-animation: sk-scaleout 1s infinite ease-in-out;
+    animation: sk-scaleout 1s infinite ease-in-out;
+    visibility: hidden;
+  }
+}
+.users__btn--none {
+  display: none;
+}
+.pressed.users__btn {
+  background: #fee6d2;
+}
+
+.loading.users__btn {
+  user-select: none;
+  color: transparent;
+  background: transparent;
+  border-color: transparent;
+  &::after {
+    visibility: visible;
+  }
+  &:hover {
+    background: none;
+  }
+}
+@keyframes sk-scaleout {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 0.2;
+  }
+}
+
+//=========================================================
+//==================== Placeholder ========================
+//=========================================================
+
+.user.placeholder {
+  .user__name,
+  .user__text {
+    color: transparent;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 70%;
+      background: #eee;
+      border-radius: 2px;
+    }
+  }
+  .user__img {
+    background: #ebebeb;
+  }
+  .user__name::before {
+    top: 0;
+  }
+}
+
+//=========================================================
+//====================== Tooltip ==========================
+//=========================================================
+
+.tooltip {
+  cursor: pointer;
+  &:hover::after {
+    opacity: 1;
+    pointer-events: all;
+  }
+  &::after {
+    content: attr(data-tooltip);
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.11);
+    border-radius: 4px;
+    padding: 2px 10px;
+    z-index: 10;
+    background: #707070;
+    color: #fefefe;
+    font-family: 'Source Sans Pro';
+    font-size: 14px;
+    font-weight: 300;
+    pointer-events: none;
+    max-width: 100%;
+    word-wrap: break-word;
+    white-space: normal;
+    opacity: 0;
+    transition: all 0.2s ease;
+  }
+}
+.user__email--tooltip::after {
+  left: 0;
+}
+.user__name--tooltip::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+//=========================================================
+//=================== Media: Tablet =======================
+//=========================================================
+
+@media screen and (min-width: 690px) {
+  .users {
+    margin-top: 49px;
+    &__subhead {
+      margin-bottom: 38px;
+    }
+    &__content {
+      display: grid;
+      grid-template-columns: repeat(3, 220px);
+      justify-content: space-between;
+      align-items: start;
+      grid-row-gap: 40px;
+    }
+    &__btn {
+      margin-top: 62px;
+    }
+  }
+
+  .user {
+    margin-bottom: 0;
+    &__img {
+      margin-bottom: 13px;
+    }
+    &__name {
+      max-width: 210px;
+      margin-bottom: 4px;
+    }
+    &__text {
+      margin-bottom: -1px;
+    }
+    &__email {
+      max-width: 210px;
+    }
+    &__name {
+      width: 100%;
+    }
+  }
+  .mac .users__head {
+    margin-bottom: 16px;
+  }
+  .mac .users {
+    padding-top: 63px;
+  }
+}
+//=========================================================
+//=================== Media: Desktop ======================
+//=========================================================
+
+@media screen and (min-width: 1000px) {
+  .user__name--tooltip::after {
+    max-width: 75%;
+    left: auto;
+    transform: none;
+  }
+  .users {
+    text-align: left;
+    margin-top: 68px;
+    &__head {
+      margin-bottom: 12px;
+    }
+    &__subhead {
+      margin-bottom: 58px;
+    }
+    &__content {
+      grid-template-columns: repeat(3, 290px);
+      grid-row-gap: 80px;
+      // margin-bottom: -60px;
+    }
+    &__btn {
+      margin-top: 55px;
+    }
+  }
+  .user {
+    flex-direction: row;
+    align-items: flex-start;
+    // margin-bottom: 60px;
+
+    &__info {
+      align-items: flex-start;
+      margin-top: 25px;
+    }
+    &__text {
+      margin-bottom: 0;
+    }
+    &__img {
+      min-width: 70px;
+      margin-right: 10px;
+    }
+    &__name {
+      text-align: left;
+      margin-bottom: 8px;
+    }
+  }
+  .mac .users__content {
+    grid-row-gap: 60px;
+  }
+  .mac .user {
+    &__info {
+      margin-top: 23px;
+    }
+    &__name {
+      margin-bottom: 11px;
+    }
+  }
+}
+
+//=========================================================
+//=================== Media: 2560x ========================
+//=========================================================
+
+@media screen and (min-width: 1170px) {
+  .users {
+    &__content {
+      grid-template-columns: repeat(3, 360px);
+      grid-row-gap: 60px;
+      margin-bottom: 0;
+    }
+  }
+  .user {
+    margin-bottom: 0;
+    &__info {
+      margin-top: 23px;
+    }
+    &__email {
+      max-width: 300px;
+    }
+    &__name {
+      max-width: 250px;
+    }
+    &__text {
+      max-width: 280px;
+    }
+  }
+}

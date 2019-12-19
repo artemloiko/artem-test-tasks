@@ -1,5 +1,6 @@
 
 # misc
+deploy/id_rsa
 .DS_Store
 
 npm-debug.log*
